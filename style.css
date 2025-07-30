@@ -674,6 +674,12 @@ body.toc-open .toc-container {
         min-height: auto;
     }
     
+    /* Override specific slide content padding for better mobile experience */
+    .trends-slide .content,
+    .gtm-slide .content {
+        padding: 0 var(--spacing-sm) !important;
+    }
+    
     .pagination {
         display: none;
     }
@@ -792,16 +798,77 @@ body.toc-open .toc-container {
     }
     
     /* Special mobile adjustments */
-    .trends-slide .trend-box,
+    .trends-slide .content {
+        padding: 0 var(--spacing-sm) !important;
+    }
+    
+    .trends-slide .trend-box {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 1px;
+        padding: var(--spacing-sm) var(--spacing-md);
+        box-sizing: border-box;
+        display: block;
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--border-radius);
+    }
+    
+    .trends-slide .trend-box .body-text {
+        font-size: clamp(14px, 3.5vw, 16px) !important;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+    
+    .gtm-slide .content {
+        padding: 0 var(--spacing-sm) !important;
+    }
+    
     .gtm-slide .strategy-section {
         width: 100%;
         max-width: 100%;
         height: auto;
         min-height: 1px;
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-md);
         box-sizing: border-box;
         display: block;
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--border-radius);
+    }
+    
+    .gtm-slide .body-text {
+        font-size: clamp(14px, 3.5vw, 18px) !important;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .target-content {
+        font-size: clamp(13px, 3vw, 15px) !important;
+        line-height: 1.4;
+    }
+    
+    .strategy-title {
+        font-size: clamp(16px, 4vw, 20px) !important;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .trend-title {
+        font-size: clamp(16px, 4vw, 18px) !important;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    /* Reduce spacing in trend and strategy items */
+    .target-item {
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .target-verticals {
+        margin-top: var(--spacing-xs);
+        gap: var(--spacing-xs);
+    }
+    
+    .vertical-badge {
+        font-size: clamp(11px, 2.5vw, 13px);
+        padding: 2px var(--spacing-xs);
     }
     
     .highlight-box {
@@ -872,7 +939,7 @@ body.toc-open .toc-container {
 /* Extra small screens */
 @media (max-width: 480px) {
     .content {
-        padding: 0 var(--spacing-sm);
+        padding: 0 var(--spacing-xs);
     }
     
     .slide {
@@ -892,7 +959,33 @@ body.toc-open .toc-container {
     .column,
     .feature-card,
     .process-step {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+    
+    /* Even tighter spacing for trends and GTM on very small screens */
+    .trends-slide .content,
+    .gtm-slide .content {
+        padding: 0 var(--spacing-xs) !important;
+    }
+    
+    .trends-slide .trend-box,
+    .gtm-slide .strategy-section {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .trend-title,
+    .strategy-title {
+        font-size: clamp(14px, 5vw, 18px) !important;
+    }
+    
+    .trends-slide .trend-box .body-text,
+    .gtm-slide .body-text {
+        font-size: clamp(12px, 4vw, 14px) !important;
+    }
+    
+    .target-content {
+        font-size: clamp(11px, 3.5vw, 13px) !important;
     }
     
     .toc-container {
