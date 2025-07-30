@@ -674,6 +674,18 @@ body.toc-open .toc-container {
         min-height: auto;
     }
     
+    /* Special centered slides maintain flex layout on mobile */
+    .title-slide .content,
+    .thank-you .content {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 80vh;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
     /* Override specific slide content padding for better mobile experience */
     .trends-slide .content,
     .gtm-slide .content {
@@ -907,16 +919,42 @@ body.toc-open .toc-container {
     
     /* Title slide mobile adjustments */
     .title-slide .logo {
-        width: 200px;
+        width: clamp(160px, 40vw, 200px);
         margin-bottom: var(--spacing-lg);
     }
     
     .title-slide .title {
-        font-size: clamp(36px, 8vw, 48px);
+        font-size: clamp(28px, 8vw, 42px);
+        text-align: center;
+        margin-bottom: var(--spacing-md);
     }
     
     .title-slide .subtitle {
-        font-size: clamp(18px, 4vw, 24px);
+        font-size: clamp(16px, 4vw, 22px);
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .title-slide .date {
+        font-size: clamp(14px, 3vw, 16px);
+        text-align: center;
+    }
+    
+    /* Thank you slide mobile adjustments */
+    .thanks {
+        font-size: clamp(32px, 10vw, 48px) !important;
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+    }
+    
+    .thank-you .slide-title {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .logo-sm {
+        width: clamp(120px, 30vw, 160px) !important;
+        margin-top: var(--spacing-lg) !important;
     }
     
     /* TOC mobile improvements */
@@ -986,6 +1024,29 @@ body.toc-open .toc-container {
     
     .target-content {
         font-size: clamp(11px, 3.5vw, 13px) !important;
+    }
+    
+    /* Title and thank you slides on very small screens */
+    .title-slide .content,
+    .thank-you .content {
+        padding: var(--spacing-md) var(--spacing-xs);
+        min-height: 70vh;
+    }
+    
+    .title-slide .logo {
+        width: clamp(120px, 35vw, 160px);
+    }
+    
+    .title-slide .title {
+        font-size: clamp(24px, 9vw, 36px);
+    }
+    
+    .thanks {
+        font-size: clamp(28px, 12vw, 42px) !important;
+    }
+    
+    .logo-sm {
+        width: clamp(100px, 25vw, 140px) !important;
     }
     
     .toc-container {
