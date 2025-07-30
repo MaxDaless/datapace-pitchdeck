@@ -1,0 +1,902 @@
+:root {
+    --primary-blue: #0ea5e9;
+    --primary-teal: #14b8a6;
+    --primary-green: #22c55e;
+    --title-blue: #0c4a6e;
+    --emphasis-blue: #0891b2;
+    --text-dark: #334155;
+    --text-light: #64748b;
+    --bg-light: #f8fafc;
+    --shadow-light: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111827;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+}
+
+/* Performance optimizations */
+.slide-container,
+.feature-card,
+.column,
+.process-step {
+    will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+#slide-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    visibility: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    z-index: 10;
+}
+
+.slide-container {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background-color: #ffffff;
+    overflow: auto;
+    transform-origin: center center;
+    box-shadow: var(--shadow-large), 0 20px 50px rgba(0,0,0,0.2);
+    border-radius: var(--border-radius);
+}
+
+.slide-container::-webkit-scrollbar { width: 14px; }
+.slide-container::-webkit-scrollbar-track { background: transparent; }
+.slide-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+}
+.slide-container::-webkit-scrollbar-thumb:hover { background-color: rgba(0, 0, 0, 0.4); }
+
+.pagination {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    z-index: 100;
+}
+.pagination-arrow { background: none; border: none; color: #e5e7eb; font-size: 20px; cursor: pointer; transition: color 0.2s ease, transform 0.2s ease; }
+.pagination-arrow:hover { color: var(--primary-teal); transform: scale(1.1); }
+#page-counter { color: #d1d5db; font-weight: 500; font-size: 16px; min-width: 50px; text-align: center; }
+
+.content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 60px 100px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.slide-title { 
+    font-size: clamp(32px, 4vw, 44px); 
+    font-weight: 700; 
+    color: var(--title-blue); 
+    margin-bottom: 30px; 
+    letter-spacing: -0.5px; 
+    line-height: 1.2;
+}
+.slide-subtitle { 
+    font-size: clamp(18px, 2.5vw, 22px); 
+    font-weight: 400; 
+    color: var(--text-dark); 
+    margin-bottom: 40px; 
+    line-height: 1.4;
+}
+.body-text { 
+    font-size: clamp(18px, 2.2vw, 24px); 
+    line-height: 1.6; 
+    font-weight: 400; 
+    color: var(--text-dark); 
+    margin-bottom: 24px; 
+}
+.emphasis { font-weight: 600; color: var(--emphasis-blue); }
+.highlight-box { 
+    border-left: 4px solid var(--primary-teal); 
+    margin: var(--spacing-lg) 0; 
+    background-color: rgba(20, 184, 166, 0.05); 
+    padding: var(--spacing-lg) 28px; 
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    box-shadow: var(--shadow-light);
+}
+.wave-bg-right { position: absolute; top: 0; right: 0; width: 800px; height: 800px; opacity: 0.05; z-index: 1; }
+.wave-accent-bottom { position: absolute; bottom: -80px; left: -30px; width: 1000px; opacity: 0.15; z-index: 2; }
+.source-text { font-size: 14px; font-style: italic; color: var(--text-light); margin-top: auto; padding-top: 10px; }
+.column { display: flex; flex-direction: column; }
+
+/* --- Slide 1: Title Slide --- */
+.title-slide { background-color: var(--bg-light); }
+.title-slide .content { justify-content: center; align-items: center; padding-bottom: 80px; }
+.title-slide .logo { width: 280px; height: auto; margin-bottom: 40px; }
+.title-slide .title { font-size: 64px; color: var(--title-blue); margin-bottom: 24px; }
+.title-slide .subtitle { font-size: 28px; color: var(--emphasis-blue); margin-bottom: 40px; }
+.title-slide .date { font-size: 18px; color: var(--text-light); margin-top: 20px; }
+.title-slide .wave-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; z-index: 1; }
+.title-slide .wave-accent { position: absolute; bottom: -180px; left: -100px; width: 1500px; transform: rotate(-5deg); opacity: 0.6; z-index: 2; }
+
+/* --- Slide 3: Triad of Pain --- */
+.columns-container { 
+    display: flex; 
+    justify-content: space-between; 
+    gap: var(--spacing-xl); 
+    margin-top: 10px; 
+    flex-wrap: wrap;
+}
+.column { 
+    flex: 1; 
+    min-width: 280px;
+    background-color: rgba(255, 255, 255, 0.95); 
+    border-radius: var(--border-radius-lg); 
+    padding: var(--spacing-lg); 
+    border-top: 4px solid; 
+    box-shadow: var(--shadow-medium); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.column:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+.column-financial { border-top-color: var(--primary-blue); }
+.column-revenue { border-top-color: var(--primary-teal); }
+.column-productivity { border-top-color: var(--primary-green); }
+.column-title { 
+    font-size: clamp(20px, 2.5vw, 22px); 
+    font-weight: 600; 
+    margin-bottom: var(--spacing-md); 
+    display: flex; 
+    align-items: center; 
+}
+.column-title i { 
+    margin-right: var(--spacing-sm); 
+    font-size: clamp(22px, 2.8vw, 24px); 
+}
+.column-subtitle { 
+    font-size: clamp(16px, 2vw, 18px); 
+    font-weight: 600; 
+    color: #475569; 
+    margin-bottom: var(--spacing-sm); 
+}
+.column-text { 
+    font-size: clamp(14px, 1.8vw, 16px); 
+    line-height: 1.6; 
+    color: var(--text-dark); 
+    margin-bottom: var(--spacing-md); 
+}
+.highlight { 
+    font-size: clamp(16px, 2vw, 18px); 
+    font-weight: 600; 
+    color: var(--title-blue); 
+    padding: var(--spacing-sm) var(--spacing-md); 
+    border-radius: var(--border-radius); 
+    margin-top: var(--spacing-md); 
+    display: inline-block; 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.financial-highlight { background-color: rgba(14, 165, 233, 0.15); }
+.revenue-highlight { background-color: rgba(20, 184, 166, 0.15); }
+.productivity-highlight { background-color: rgba(34, 197, 94, 0.15); }
+
+/* --- Slide 4: Trends --- */
+.trends-slide .content { padding: 60px 100px; }
+.trends-slide .body-text { font-size: 22px; line-height: 1.4; margin-bottom: 20px; }
+.trends-slide .trend-box {
+    display: flex; /* Add this */
+    flex-direction: column; /* Add this */
+	gap: 8px; /* Adds a small space between the title and the text */
+    padding: 16px 24px;
+    margin-bottom: 16px;
+    background-color: rgba(14, 165, 233, 0.05);
+    border-radius: 8px;
+}
+/* In style.css */
+.trends-slide .trend-box,
+.gtm-slide .strategy-section {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+    height: auto;
+    overflow: visible;
+}
+.trends-slide .trend-box .body-text {
+    font-size: 18px;
+    margin-bottom: 0;
+    overflow-wrap: break-word; /* Add the new line here */
+}
+.trend-title { font-size: 20px; font-weight: 600; color: var(--emphasis-blue); margin-bottom: 8px; }
+.trend-icon { font-size: 22px; margin-right: 12px; color: var(--primary-blue); }
+.flex.items-center { display: flex; align-items: center; }
+
+/* --- Slide 5: The Solution --- */
+.feature-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: var(--spacing-lg); 
+    margin-top: var(--spacing-xl); 
+}
+.feature-card { 
+    padding: var(--spacing-lg); 
+    border-radius: var(--border-radius-lg); 
+    background-color: rgba(14, 165, 233, 0.08); 
+    border-top: 4px solid var(--primary-blue); 
+    height: 100%; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-light);
+}
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+.feature-icon { 
+    font-size: clamp(32px, 4vw, 40px); 
+    color: var(--primary-blue); 
+    margin-bottom: var(--spacing-md); 
+}
+.feature-title { 
+    font-size: clamp(20px, 2.5vw, 24px); 
+    font-weight: 600; 
+    color: var(--title-blue); 
+    margin-bottom: var(--spacing-sm); 
+    line-height: 1.3;
+}
+.feature-description { 
+    font-size: clamp(16px, 2vw, 18px); 
+    line-height: 1.5; 
+    color: var(--text-dark); 
+}
+
+/* --- Slide 6: How it Works --- */
+.process-flow { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: stretch; 
+    margin: var(--spacing-lg) 0; 
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+.process-step { 
+    flex: 1;
+    min-width: 240px;
+    min-height: 220px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: rgba(14, 165, 233, 0.08); 
+    border-radius: var(--border-radius-lg); 
+    border: 1px solid rgba(14, 165, 233, 0.2); 
+    padding: var(--spacing-lg); 
+    text-align: center; 
+    position: relative; 
+    z-index: 3; 
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.process-step:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+.step-number { 
+    font-size: clamp(20px, 2.5vw, 22px); 
+    font-weight: 700; 
+    color: var(--emphasis-blue); 
+    margin-bottom: var(--spacing-sm); 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(8, 145, 178, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.step-title { 
+    font-size: clamp(18px, 2.2vw, 22px); 
+    font-weight: 600; 
+    color: var(--title-blue); 
+    margin-bottom: var(--spacing-sm); 
+    line-height: 1.3;
+}
+.step-desc { 
+    font-size: clamp(14px, 1.8vw, 16px); 
+    color: #475569; 
+    line-height: 1.5; 
+}
+.arrow { 
+    font-size: 26px; 
+    color: var(--primary-teal); 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+
+/* --- Slide 7: About the Founder (FIXED LAYOUT) --- */
+.founder-slide .content { justify-content: center; }
+.founder-grid { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 60px; margin-top: 20px; }
+.founder-image-container { display: flex; justify-content: center; }
+.founder-image { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; object-position: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+.founder-bio { display: flex; flex-direction: column; gap: 24px; }
+.bio-item { display: flex; align-items: flex-start; gap: 20px; }
+.bio-icon { font-size: 24px; color: var(--primary-teal); margin-top: 6px; width: 30px; text-align: center; }
+.bio-item h3 { font-size: 22px; font-weight: 600; color: var(--title-blue); margin-bottom: 6px; }
+.bio-item p { font-size: 18px; color: var(--text-dark); line-height: 1.5; }
+
+/* --- Slide 8: Demo Slide --- */
+.demo-slide-content { justify-content: center; align-items: center; gap: 40px; }
+/* STARTFIX: Added rule to make iframe responsive */
+.demo-slide-content iframe {
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+/* ENDFIX */
+
+/* --- Slide 9: Our Moat --- */
+.moat-slide .slide-subtitle { margin-bottom: 30px; max-width: 800px; }
+.competitor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 30px; }
+.competitor-column { padding: 24px; border-radius: 12px; background-color: var(--bg-light); border-top: 4px solid var(--primary-teal); }
+.competitor-title { font-size: 20px; font-weight: 600; color: var(--title-blue); margin-bottom: 16px; }
+.logo-group { display: flex; gap: 20px; align-items: center; height: 35px; margin-bottom: 16px; }
+.logo-group img { max-height: 25px; max-width: 110px; filter: grayscale(1); opacity: 0.8; }
+.logo-placeholder { font-weight: 600; color: #94a3b8; font-size: 18px; }
+.competitor-desc { font-size: 16px; color: var(--text-dark); line-height: 1.5; }
+/* In style.css */
+.datapace-advantage {
+    display: grid;
+    grid-template-columns: 80px 1fr; 
+    align-items: center;
+    gap: 16px; /* Reduced gap slightly for mobile */
+    padding: 24px;
+    /* Remove other properties like margin-top, border, etc. as they are already defined outside the media query */
+}
+
+.datapace-logo-advantage {
+    width: 80px;  /* Set an explicit width */
+    height: 80px; /* Set an explicit height */
+    object-fit: contain; /* KEY: Preserves aspect ratio, preventing distortion */
+}
+
+.datapace-advantage p {
+    text-align: left; /* Ensures text is readable and clean */
+    flex: 1; /* This is from a previous fix, keep it */
+}
+p {
+    flex: 1; /* Allows the text to take up the remaining available space */
+}
+.datapace-logo-advantage { height: 50px; width: auto; }
+.datapace-advantage p { font-size: 20px; color: var(--title-blue); font-weight: 500; margin: 0;flex: 1; /* Allows the text to take up the remaining available space */ }
+/* --- Slide 10: GTM Strategy --- */
+.gtm-slide .content { padding: 60px 100px; }
+.gtm-slide .body-text { font-size: 20px; margin-bottom: 16px; }
+.strategy-container { display: flex; flex-direction: column; gap: 16px; }
+.strategy-section { background-color: rgba(20, 184, 166, 0.05); border-radius: 12px; padding: 16px 24px; border-left: 4px solid var(--primary-teal); }
+.strategy-title { font-size: 22px; font-weight: 600; color: var(--title-blue); margin-bottom: 12px; display: flex; align-items: center; }
+.strategy-title i { margin-right: 12px; color: var(--emphasis-blue); }
+.target-list { margin-left: 0; }
+.target-item { margin-bottom: 10px; display: flex; align-items: flex-start; }
+.target-item i { color: var(--primary-teal); margin-right: 12px; margin-top: 4px; }
+.target-content { flex: 1; font-size: 16px; line-height: 1.5; color: var(--text-dark); }
+.target-verticals { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.vertical-badge { background-color: rgba(8, 145, 178, 0.1); color: var(--emphasis-blue); font-weight: 500; padding: 4px 12px; border-radius: 30px; font-size: 14px; }
+.vertical-badge .mr-2 { margin-right: 6px; }
+
+/* --- Slide 11: The Vision/Roadmap --- */
+.roadmap-container { display: flex; justify-content: space-between; margin-top: 20px; }
+.milestone { width: 32%; padding: 24px; border-radius: 12px; background-color: rgba(14, 165, 233, 0.05); border-left: 4px solid; position: relative; }
+.milestone-1 { border-left-color: var(--primary-blue); }
+.milestone-2 { border-left-color: var(--primary-teal); }
+.milestone-3 { border-left-color: var(--primary-green); }
+.year-label { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+.milestone-1 .year-label { color: var(--primary-blue); }
+.milestone-2 .year-label { color: var(--primary-teal); }
+.milestone-3 .year-label { color: var(--primary-green); }
+.milestone-text { font-size: 20px; line-height: 1.6; color: var(--text-dark); }
+
+/* --- Slide 12: The Ask --- */
+.funding-amount { font-size: 48px; font-weight: 700; color: var(--emphasis-blue); margin: 20px 0; }
+.fund-use-item { display: flex; align-items: flex-start; margin-bottom: 20px; }
+.fund-use-icon { background-color: rgba(20, 184, 166, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; flex-shrink: 0; }
+.fund-use-icon svg { width: 24px; height: 24px; fill: var(--emphasis-blue); }
+.fund-use-text { padding-top: 10px; }
+.fund-use-title { font-weight: 600; font-size: 24px; color: var(--title-blue); margin-bottom: 5px; }
+.fund-use-desc { font-size: 20px; color: #475569; }
+
+/* --- Slide 13: Thank You --- */
+.thank-you .content { justify-content: center; align-items: center; }
+.thanks { font-size: 64px; font-weight: 600; color: var(--emphasis-blue); margin-bottom: 60px; letter-spacing: -1px; }
+.wave-accent-thank-you { position: absolute; bottom: -60px; right: -200px; width: 1200px; opacity: 0.12; z-index: 2; }
+.logo-sm { width: 220px; height: auto; margin-top: 40px; }
+
+/* NEW STYLES FOR THE LINKS */
+.final-links {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 30px;
+}
+.final-link-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+.final-link-item:hover {
+    color: var(--primary-teal);
+}
+.final-link-item i {
+    font-size: 24px;
+}
+
+/* --- Table of Contents Styles --- */
+.toc-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 101;
+    background-color: rgba(17, 24, 39, 0.8);
+    color: #e5e7eb;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.toc-button:hover {
+    background-color: var(--primary-teal);
+    color: white;
+}
+
+.toc-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 80px 40px 40px 40px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+}
+
+body.toc-open .toc-container {
+    transform: translateX(0);
+}
+
+.toc-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--primary-teal);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.toc-list li a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.toc-list li a:hover {
+    color: var(--primary-teal);
+    transform: translateX(5px);
+}
+
+/* ==============================================
+    MOBILE & TABLET RESPONSIVE STYLES
+==============================================
+*/
+
+/* Tablet styles */
+@media (max-width: 1280px) and (min-width: 769px) {
+    .content {
+        padding: 40px 60px;
+    }
+    
+    .slide-title {
+        font-size: 36px;
+    }
+    
+    .slide-subtitle {
+        font-size: 20px;
+    }
+    
+    .body-text {
+        font-size: 20px;
+    }
+}
+
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid var(--primary-teal);
+    outline-offset: 2px;
+}
+
+.toc-button:focus,
+.pagination-arrow:focus,
+.final-link-item:focus {
+    outline: 2px solid var(--primary-teal);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .highlight-box,
+    .feature-card,
+    .column {
+        border: 2px solid var(--text-dark);
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        background-color: #ffffff;
+        scroll-behavior: smooth;
+        touch-action: pan-y;
+    }
+
+    #slide-wrapper {
+        height: auto;
+        width: 100%;
+        display: block;
+        padding: 0;
+    }
+
+    .slide {
+        position: relative;
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+        height: auto;
+        width: 100%;
+        padding: var(--spacing-2xl) 0;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .slide:first-child {
+        padding-top: 80px;
+    }
+    
+    .slide:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .slide.active {
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+    }
+    
+    .slide-container {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        box-shadow: none;
+        overflow: visible;
+        border-radius: 0;
+        background-color: transparent;
+    }
+    
+    .content {
+        display: block !important;
+        padding: 0 var(--spacing-md);
+        min-height: auto;
+    }
+    
+    .pagination {
+        display: none;
+    }
+
+    /* Typography adjustments for mobile */
+    .slide-title {
+        font-size: clamp(24px, 6vw, 32px);
+        line-height: 1.2;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .slide-subtitle {
+        font-size: clamp(16px, 4vw, 20px);
+        margin-bottom: var(--spacing-lg);
+        line-height: 1.4;
+    }
+    
+    .body-text {
+        font-size: clamp(14px, 3.5vw, 18px);
+        line-height: 1.6;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .emphasis {
+        display: inline-block;
+        padding: 2px 4px;
+        background-color: rgba(8, 145, 178, 0.1);
+        border-radius: 4px;
+    }
+    /* Layout adjustments */
+    .columns-container,
+    .roadmap-container {
+        flex-direction: column;
+        display: flex;
+        gap: var(--spacing-lg);
+    }
+    
+    .feature-grid,
+    .competitor-grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    
+    .milestone {
+        width: 100%;
+        padding: var(--spacing-md);
+    }
+    
+    .column {
+        min-width: auto;
+        margin-bottom: var(--spacing-md);
+    }
+    .process-flow {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-items: center;
+    }
+    
+    .process-step {
+        width: 100%;
+        max-width: 400px;
+        min-height: 180px;
+    }
+    
+    .arrow {
+        transform: rotate(90deg);
+        margin: 0;
+        font-size: 20px;
+    }
+    .founder-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    
+    .founder-image-container {
+        margin: 0 auto var(--spacing-md) auto;
+    }
+    
+    .founder-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .bio-item {
+        text-align: left;
+        gap: var(--spacing-md);
+    }
+    .final-links {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+    }
+    
+    .final-link-item {
+        font-size: 18px;
+        justify-content: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--border-radius);
+        background-color: rgba(20, 184, 166, 0.05);
+        border: 1px solid rgba(20, 184, 166, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .final-link-item:hover {
+        background-color: rgba(20, 184, 166, 0.1);
+        transform: translateY(-1px);
+    }
+
+    /* Hide decorative waves on mobile */
+    .wave-bg, .wave-accent, .wave-bg-right, .wave-accent-bottom, .wave-accent-thank-you {
+        display: none;
+    }
+    
+    /* Special mobile adjustments */
+    .trends-slide .trend-box,
+    .gtm-slide .strategy-section {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 1px;
+        padding: var(--spacing-md);
+        box-sizing: border-box;
+        display: block;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .highlight-box {
+        margin: var(--spacing-md) 0;
+        padding: var(--spacing-md);
+    }
+    
+    .datapace-advantage {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+    
+    .datapace-logo-advantage {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+    }
+    
+    /* Demo iframe responsive */
+    .demo-slide-content iframe {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px;
+        aspect-ratio: 16/9;
+        border-radius: var(--border-radius);
+    }
+    
+    /* Improve tap targets for mobile */
+    .toc-list li a,
+    .final-link-item {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Title slide mobile adjustments */
+    .title-slide .logo {
+        width: 200px;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .title-slide .title {
+        font-size: clamp(36px, 8vw, 48px);
+    }
+    
+    .title-slide .subtitle {
+        font-size: clamp(18px, 4vw, 24px);
+    }
+    
+    /* TOC mobile improvements */
+    .toc-container {
+        width: 280px;
+        padding: 60px var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    }
+    
+    .toc-title {
+        font-size: 24px;
+    }
+    
+    .toc-list li a {
+        font-size: 16px;
+        padding: var(--spacing-sm) 0;
+    }
+}
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .content {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .slide {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .slide-title {
+        font-size: clamp(20px, 7vw, 28px);
+    }
+    
+    .columns-container,
+    .feature-grid,
+    .process-flow {
+        gap: var(--spacing-md);
+    }
+    
+    .column,
+    .feature-card,
+    .process-step {
+        padding: var(--spacing-md);
+    }
+    
+    .toc-container {
+        width: 100vw;
+        padding: 60px var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+    }
+}

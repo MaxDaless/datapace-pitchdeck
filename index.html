@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Datapace - The AI shortcut to database performance. Full pitch deck presentation.">
+    <meta name="theme-color" content="#14b8a6">
+    <title>Datapace: Full Pitch Deck</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <button id="toc-toggle" class="toc-button" aria-label="Toggle table of contents"><i class="fas fa-bars"></i></button>
+
+    <nav id="toc" class="toc-container">
+        <h3 class="toc-title">Presentation Agenda</h3>
+        <ol class="toc-list">
+            <li><a href="#" data-slide-index="0">Title</a></li>
+            <li><a href="#" data-slide-index="1">The Problem</a></li>
+            <li><a href="#" data-slide-index="2">The Pain</a></li>
+            <li><a href="#" data-slide-index="3">Market Trends</a></li>
+            <li><a href="#" data-slide-index="4">About the Founder</a></li>
+            <li><a href="#" data-slide-index="5">The Solution</a></li>
+            <li><a href="#" data-slide-index="6">How It Works (PoC)</a></li>
+            <li><a href="#" data-slide-index="7">Product Demo</a></li>
+            <li><a href="#" data-slide-index="8">Our Unique Moat</a></li>
+            <li><a href="#" data-slide-index="9">Go-to-Market Strategy</a></li>
+            <li><a href="#" data-slide-index="10">The Vision</a></li>
+            <li><a href="#" data-slide-index="11">The Ask</a></li>
+            <li><a href="#" data-slide-index="12">Thank You</a></li>
+        </ol>
+    </nav>
+    <div id="slide-wrapper">
+
+        <div class="slide active">
+            <div class="slide-container title-slide">
+                <svg class="wave-bg" viewBox="0 0 1280 720"><path d="M-100,250 C100,150 300,450 500,300 C700,150 900,350 1100,250 C1300,150 1500,350 1700,300" fill="none" opacity="0.1" stroke="#0ea5e9" stroke-width="80"></path><path d="M-100,350 C100,250 300,550 500,400 C700,250 900,450 1100,350 C1300,250 1500,450 1700,400" fill="none" opacity="0.1" stroke="#14b8a6" stroke-width="80"></path><path d="M-100,450 C100,350 300,650 500,500 C700,350 900,550 1100,450 C1300,350 1500,550 1700,500" fill="none" opacity="0.1" stroke="#22c55e" stroke-width="80"></path></svg>
+                <svg class="wave-accent" viewBox="0 0 1280 200"><path d="M-100,150 C200,50 400,180 600,80 C800,-20 1000,120 1200,50 C1400,-20 1600,100 1800,50" fill="none" opacity="0.8" stroke="#0ea5e9" stroke-width="30"></path><path d="M-100,120 C200,20 400,150 600,50 C800,-50 1000,90 1200,20 C1400,-50 1600,70 1800,20" fill="none" opacity="0.8" stroke="#14b8a6" stroke-width="30"></path><path d="M-100,90 C200,-10 400,120 600,20 C800,-80 1000,60 1200,-10 C1400,-80 1600,40 1800,-10" fill="none" opacity="0.8" stroke="#22c55e" stroke-width="30"></path></svg>
+                <div class="content">
+                    <img src="assets/logo.png" alt="Datapace Logo" class="logo">
+                    <h1 class="title">Datapace</h1>
+                    <p class="subtitle">The AI Shortcut to Database Performance.</p>
+                    <p class="date">July, 2025</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">The $100 Billion Problem You Don't See</h1>
+                    <p class="body-text">Database is the <span class="emphasis">#1 bottleneck</span> for application performance (AppDynamics, 2024) and cloud costs (FinOps Foundation, 2023), yet the leading observability tools provide <span class="emphasis">symptoms, not solutions, to the root cause</span>.</p>
+                    <div class="highlight-box">
+                        <p class="body-text" style="margin-bottom: 0;">This isn't a theory. Our Proof-of-Concept for PostgreSQL already proves we can uncover critical, costly inefficiencies that platforms like Datadog completely miss.</p>
+                    </div>
+                    <p class="body-text">We are building the <span class="emphasis">system of record for database performance</span>, starting with a developer-first tool that pays for itself.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">The Triad of Pain: A Tax on Growth</h1>
+                    <p class="slide-subtitle">This "Diagnostic Gap" imposes a direct and measurable tax on every modern business.</p>
+                    <div class="columns-container">
+                        <div class="column column-financial">
+                            <h2 class="column-title"><i class="fas fa-dollar-sign"></i>Financial Cost (Opex)</h2>
+                            <h3 class="column-subtitle">Bloated Cloud Bills</h3>
+                            <p class="column-text">Inefficient queries & over-provisioning directly increase cloud costs.</p>
+                            <div class="highlight financial-highlight">Fixing one bad query can save $22k+/month.</div>
+                            <p class="source-text">*Source: Reddit r/bigquery, 2025</p>
+                        </div>
+                        <div class="column column-revenue">
+                            <h2 class="column-title"><i class="fas fa-chart-line"></i>Revenue Impact</h2>
+                            <h3 class="column-subtitle">Poor User Experience</h3>
+                            <p class="column-text">Latency leads to higher bounce rates, lower conversions, and customer churn.</p>
+                            <div class="highlight revenue-highlight">A 0.1s delay can cost 8% in conversions.</div>
+                             <p class="source-text">*Source: Deloitte, 2020</p>
+                        </div>
+                        <div class="column column-productivity">
+                            <h2 class="column-title"><i class="fas fa-user-clock"></i>Productivity Drain</h2>
+                            <h3 class="column-subtitle">Wasted Developer Time</h3>
+                            <p class="column-text">Developers spend hours on debugging & maintenance instead of building features.</p>
+                            <div class="highlight productivity-highlight">~57% of a developer's week is wasted time.</div>
+                            <p class="source-text">*Source: Cisco, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <div class="slide-container trends-slide">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">A Perfect Storm: Three Irreversible Trends</h1>
+                    <p class="body-text">This pain is intensifying daily due to three massive market shifts.</p>
+                    <div class="trend-box">
+                        <div class="flex items-center"><i class="fas fa-database trend-icon"></i><h3 class="trend-title">Data & Complexity Tsunami</h3></div>
+                        <p class="body-text">Explosion of data volume (<span class="emphasis">181 zettabytes by 2025</span>, Statista) and the rise of complex, multi-database stacks (Postgres, Snowflake, Mongo, etc.) make optimization impossible with old tools.</p>
+                    </div>
+                    <div class="trend-box">
+                        <div class="flex items-center"><i class="fas fa-gauge-high trend-icon"></i><h3 class="trend-title">The Experience Economy</h3></div>
+                        <p class="body-text">"Slow is the new down." Performance is no longer a feature; it's a direct driver of revenue and brand reputation. A mere <span class="emphasis">0.1-second improvement</span> in site speed can boost e-commerce conversions <span class="emphasis">by 8.4%</span> (Deloitte, Google). Moreover, nearly <span class="emphasis">half</span> of all mobile visitors abandon pages that take over <span class="emphasis">3 seconds</span> to load (Google).</p>
+                    </div>
+                    <div class="trend-box">
+                        <div class="flex items-center"><i class="fas fa-chart-line trend-icon"></i><h3 class="trend-title">The FinOps Imperative</h3></div>
+                        <p class="body-text">With<span class="emphasis"> 32%</span> of cloud spend being wasted (CloudZero, Flexera 2022/2023 reports), CFOs and CTOs are demanding tools that provide a clear ROI by improving efficiency. <span class="emphasis">51%</span> of organizations now have a FinOps team, with another <span class="emphasis">20%</span> planning one by 2025, highlighting the C-suite's growing focus on cloud cost optimization (State of the Cloud Report 2024).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="slide">
+            <div class="slide-container founder-slide">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">Why I'm Building Datapace</h1>
+                    <div class="founder-grid">
+						<div class="founder-image-container">
+							<img src="assets/your-photo.jfif" alt="Your Name" class="founder-image">
+						</div>
+						<div class="founder-bio">
+                            <div class="bio-item">
+                                <i class="fas fa-graduation-cap bio-icon"></i>
+                                <div>
+                                    <h3>Academic Foundation</h3>
+                                    <p>Master's in Information Management & Business Intelligence.</p>
+                                </div>
+                            </div>
+                            <div class="bio-item">
+                                <i class="fas fa-briefcase bio-icon"></i>
+                                <div>
+                                    <h3>Industry Expertise</h3>
+                                    <p>7 years in IT, working as a Data Solutions Architect in the demanding insurance and financial services sectors.</p>
+                                </div>
+                            </div>
+                             <div class="bio-item">
+                                <i class="fas fa-lightbulb bio-icon"></i>
+                                <div>
+                                    <h3>The "Aha!" Moment</h3>
+                                    <p>In many organizations, I saw the same paradox: bloated, complex monitoring tools that were a database for a database. A massive resource drain. The inital idea of datapace was to avoid storing metrics and provide direct recommendations plan.</p>
+                                </div>
+                            </div>
+                            <div class="bio-item">
+                                <i class="fas fa-handshake bio-icon"></i>
+                                <div>
+                                    <h3>Enterprise Ready</h3>
+                                    <p>Deep experience in software sales and navigating the selection process for highly regulated organizations, ensuring compliance with strict security, availability, and data governance requirements.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-container">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">Introducing Datapace</h1>
+                    <p class="body-text">Datapace is a <span class="emphasis">developer-first observability platform</span> that translates complex database behavior into actionable performance and cost optimizations.</p>
+                    <p class="body-text">We don't just show you a problem; <span class="emphasis">we give you the solution</span>.</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                            <h3 class="feature-title">Pinpoint Root Cause</h3>
+                            <p class="feature-description">Instantly identify the exact queries and transactions slowing down your application.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                            <h3 class="feature-title">Quantify Business Impact</h3>
+                            <p class="feature-description">Connect database performance directly to user experience and your cloud bill.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="feature-title">Provide Actionable Fixes</h3>
+                            <p class="feature-description">Deliver specific, expert-level recommendations that developers can implement immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+					<h1 class="slide-title">How It Works: Our PostgreSQL PoC in Action</h1>
+					
+					<div class="process-flow">
+						<div class="process-step">
+							<div class="step-number">1</div>
+							<div class="step-title">Analyze & Extract Metrics</div>
+							<div class="step-desc">Our agent captures detailed query execution plans and selects only the essential performance metrics.</div>
+						</div>
+						<div class="arrow"><i class="fas fa-arrow-right"></i></div>
+						<div class="process-step">
+							<div class="step-number">2</div>
+							<div class="step-title">Generate AI Recommendations</div>
+							<div class="step-desc">Our AI analyzes the metrics to identify anti-patterns and generate concrete optimization advice.</div>
+						</div>
+						<div class="arrow"><i class="fas fa-arrow-right"></i></div>
+						<div class="process-step">
+							<div class="step-number">3</div>
+							<div class="step-title">Enrich & Learn</div>
+							<div class="step-desc">All metadata is tagged and stored, creating a feedback loop that continuously trains and improves our AI models.</div>
+						</div>
+					</div>
+
+					<div class="highlight-box">
+						<p class="body-text" style="margin-bottom: 0;">This process turns hours of manual guesswork into minutes of automated, actionable insight, telling a developer <span class="emphasis">exactly what to fix.</span></p>
+					</div>
+				</div>
+            </div>
+        </div>
+		<div class="slide">
+            <div class="slide-container">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content demo-slide-content">
+                    <h1 class="slide-title">Proof-of-Concept Demo</h1>
+                    <iframe 
+                        width="800" height="450" 
+                        data-src="https://embed.app.guidde.com/playbooks/caPWouddFB75cZf9bS63Wa" 
+                        title="How to use the datapace prototype?" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        loading="lazy"
+                        style="border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 800px; height: auto; aspect-ratio: 16/9;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-container moat-slide">
+                <svg class="wave-accent-bottom" style="opacity: 0.1; bottom: -120px;" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">Our Unique Moat: Navigating the Performance Landscape</h1>
+                    <p class="slide-subtitle">The market is fractured into three types of players who only solve part of the problem.</p>
+                    <div class="competitor-grid">
+                        <div class="competitor-column">
+                            <h3 class="competitor-title">Broad Observability</h3>
+                            <div class="logo-group">
+								<span class="logo-placeholder">Datadog / New Relic</span>
+                            </div>
+                            <p class="competitor-desc">"Mile-wide" platforms that show you symptoms (e.g., high CPU), but lack the deep, prescriptive fixes developers need.</p>
+                        </div>
+                        <div class="competitor-column">
+                            <h3 class="competitor-title">Data Observability</h3>
+                            <div class="logo-group">
+                                <span class="logo-placeholder">Sifflet / Monte Carlo</span>
+                            </div>
+                            <p class="competitor-desc">Focus on data quality and pipeline integrity, not the real-time operational performance of transactional databases.</p>
+                        </div>
+                        <div class="competitor-column">
+                            <h3 class="competitor-title">DBA-Centric Tools</h3>
+                            <div class="logo-group">
+                                <span class="logo-placeholder">pganalyze / Redgate</span>
+                            </div>
+                            <p class="competitor-desc">"Mile-deep" tools that provide granular metrics but are built for expert DBAs, not the everyday developer.</p>
+                        </div>
+                    </div>
+                    <div class="datapace-advantage">
+                        <img src="assets/logo.png" alt="Datapace Logo" class="datapace-logo-advantage">
+                        <p>Datapace is the missing layer. We combine a <span class="emphasis">"mile-deep"</span> focus with a <span class="emphasis">developer-first</span> approach to deliver <span class="emphasis">prescriptive, AI-driven fixes</span> that democratize DBA-level expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container gtm-slide">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">Go-to-Market Strategy: A Focused Beachhead</h1>
+                    <p class="body-text">Our strategy is to win a specific, high-value market first, then expand.</p>
+                    <div class="strategy-container">
+                        <div class="strategy-section">
+                            <h2 class="strategy-title"><i class="fas fa-flag"></i>1. Land (The Beachhead):</h2>
+                            <div class="target-list">
+                                <div class="target-item"><i class="fas fa-user-tie"></i><div class="target-content"><span class="emphasis">Target Persona:</span> Tech Leads & Senior Engineers at Series B-D companies.</div></div>
+                                <div class="target-item"><i class="fas fa-building"></i><div class="target-content"><span class="emphasis">Target Verticals:</span> We will focus on sectors where database latency is a C-level concern:
+                                    <div class="target-verticals"><span class="vertical-badge"><i class="fas fa-shopping-cart mr-2"></i> E-commerce</span><span class="vertical-badge"><i class="fas fa-chart-line mr-2"></i> FinTech</span><span class="vertical-badge"><i class="fas fa-cloud mr-2"></i> B2B SaaS</span></div></div></div>
+                                <div class="target-item"><i class="fas fa-code"></i><div class="target-content"><span class="emphasis">Technical Wedge:</span> PostgreSQL Performance. We will be the undisputed best solution for this stack, leveraging our PoC.
+                                </div></div>
+                                <div class="target-item"><i class="fas fa-rocket"></i><div class="target-content"><span class="emphasis">Motion:</span> Win developer trust via a powerful free tier, exceptional technical content, and open-source contributions to drive bottoms-up adoption.
+                                </div></div>
+                            </div>
+                        </div>
+                        <div class="strategy-section">
+                            <h2 class="strategy-title"><i class="fas fa-expand-alt"></i>2. Expand:</h2>
+                            <p class="body-text" style="font-size: 20px; margin-bottom: 0;">Once embedded, we expand across the organization with enterprise features: FinOps dashboards for CFOs, advanced security controls, and support for other critical data stores (Snowflake, MySQL).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container">
+                 <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">The Vision: From Tool to System of Record</h1>
+                    <div class="roadmap-container">
+                        <div class="milestone milestone-1"><div class="year-label">Year 1</div><div class="milestone-text"><p><span class="emphasis">#1 dev tool</span> for PostgreSQL performance</p><p>Launch public beta</p><p>Secure first <span class="emphasis">50 paying customers</span></p></div></div>
+                        <div class="milestone milestone-2"><div class="year-label">Year 2</div><div class="milestone-text"><p><span class="emphasis">Expand</span> to the main database systems </p><p><span class="emphasis">CI/CD</span> pipeline integration</p><p>Introduce cost-optimization dashboards</p><p>Link engineering effort to <span class="emphasis">financial impact</span></p></div></div>
+                        <div class="milestone milestone-3"><div class="year-label">Year 3+</div><div class="milestone-text"><p>Become the <span class="emphasis">System of Record</span> for Data Performance</p><p>Build proprietary recommendation engine</p><p>Create <span class="emphasis">untouchable data moat</span></p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container">
+                 <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+                <div class="content">
+                    <h1 class="slide-title">The Ask</h1>
+                    <p class="body-text">To accelerate our vision, we are seeking:</p>
+                    <p class="funding-amount">$250,000 in a pre-seed round.</p>
+                    <p class="body-text">This funding will be used to:</p>
+                    <div class="fund-use-item">
+                        <div class="fund-use-icon"><svg viewBox="0 0 640 512"><path d="M184 88c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32c-35.3 0-64 28.7-64 64s28.7 64 64 64s64-28.7 64-64s-28.7-64-64-64zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"></path></svg></div>
+                        <div class="fund-use-text"><div class="fund-use-title">Hire 2 Core Engineers</div><div class="fund-use-desc">To productize our PoC and build out our public beta.</div></div>
+                    </div>
+                    <div class="fund-use-item">
+                        <div class="fund-use-icon"><svg viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 21 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"></path></svg></div>
+                        <div class="fund-use-text"><div class="fund-use-title">Execute Initial GTM</div><div class="fund-use-desc">Drive developer adoption through targeted content and community engagement.</div></div>
+                    </div>
+                    <div class="fund-use-item">
+                        <div class="fund-use-icon"><svg viewBox="0 0 576 512"><path d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.7c62.3 0 119.6 33.1 150.4 86.7L512 192l-36.7 36.7c-9.7 9.7-22.6 15-36.3 15c-8.9 0-17.6-2.3-25.5-6.8l0 0zM224 128v32l96 48-16-48-80-32zM362.5 512L344 435.2c-3-12.1-12.4-21.5-24.5-24.5L192 384l0 0 139.5-55.8c10.1-4 17.5-12.9 19.8-23.6l16.1-75.2L416 208v70.2c0 13.3 8 25.3 20.3 30.3l98.5 40.6c4.9 2 7.2 7.5 5.2 12.4l-60.9 146.2c-2 4.9-7.5 7.2-12.4 5.2l-43.2-17.9c-4.9-2-7.2-7.5-5.2-12.4l28.1-67.6L416 416v.7c0 19.1-7.6 37.4-21.1 50.9l-17.5 17.5c-4.2 4.2-10 6.6-16 6.6c-12.5 0-22.6-10.1-22.6-22.6V448H296c-13.3 0-24-10.7-24-24c0-12.3 9.3-22.4 21.2-23.8L352 395.8V400c0 8.8 7.2 16 16 16c8.8 0 16-7.2 16-16s-7.2-16-16-16H352c-8.8 0-16 7.2-16 16v4.1l-53.4 3.8c-10.9-7.5-24-11.9-38.2-11.9H192c-17.7 0-32 14.3-32 32l0 9.8c0 10 4.7 19.3 12.8 25.2L328.2 512H362.5zM9.8 71.6l5-12.1c8.2-19.7 25.5-34.3 46.5-39.3L92.3 15C118.2 8.2 146 18.2 160 42.8l38.5 67.4c10.2 17.8 12.9 39.1 7.5 59l-4.1 15.5c-3.8 14.2-15.2 25.3-29.5 28.6l-82.1 19.4c-13.2 3.1-26.9-1.8-34.7-12.6L28.2 173c-3.8-5.3-5.9-11.6-5.9-18c0-7.7 2.8-15.1 7.9-20.9l35.5-40.1c8.5-9.6 7.6-24.2-2-32.7s-24.2-7.6-32.7 2L9.8 71.6zM464 256c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48z"></path></svg></div>
+                        <div class="fund-use-text"><div class="fund-use-title">Achieve Product-Market Fit</div><div class="fund-use-desc">Secure our first cohort of paying customers and validate the core value proposition.</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-container thank-you">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-thank-you" viewBox="0 0 1200 300"><path d="M0,120 C200,50 400,180 600,80 C800,-20 1000,150 1200,80" fill="none" opacity="0.3" stroke="#0ea5e9" stroke-width="20"></path><path d="M0,150 C200,80 400,210 600,110 C800,10 800,180 1200,110" fill="none" opacity="0.3" stroke="#14b8a6" stroke-width="20"></path></svg>
+                <div class="content">
+                    <h1 class="thanks">Thank You</h1>
+                    <h2 class="slide-title" style="margin-bottom: 48px;">Let's build the future of database performance.</h2>
+                    <img src="assets/logo.png" alt="Datapace Logo" class="logo-sm">
+					<div class="final-links">
+                        <a href="https://datapace.ai" class="final-link-item" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-globe"></i>
+                            <span>datapace.ai</span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/datapaceai/" class="final-link-item" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                            <span>/datapaceai</span>
+                        </a>
+						<a href="https://www.instagram.com/datapace_" class="final-link-item" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                            <span>@datapace_</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pagination">
+        <button id="prev-btn" class="pagination-arrow" aria-label="Previous slide">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div id="page-counter" aria-live="polite">1 / 13</div>
+        <button id="next-btn" class="pagination-arrow" aria-label="Next slide">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
