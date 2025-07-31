@@ -250,11 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pricing toggle functionality
     const pricingToggle = document.getElementById('pricing-toggle');
     if (pricingToggle) {
-        pricingToggle.addEventListener('change', function() {
+        function togglePricing(showAnnual) {
             const monthlyPrices = document.querySelectorAll('.monthly-price');
             const annualPrices = document.querySelectorAll('.annual-price');
             
-            if (this.checked) {
+            if (showAnnual) {
                 // Show annual pricing
                 monthlyPrices.forEach(price => price.style.display = 'none');
                 annualPrices.forEach(price => price.style.display = 'inline');
@@ -263,7 +263,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 monthlyPrices.forEach(price => price.style.display = 'inline');
                 annualPrices.forEach(price => price.style.display = 'none');
             }
+        }
+        
+        // Add event listener for toggle change
+        pricingToggle.addEventListener('change', function() {
+            togglePricing(this.checked);
         });
+        
+        // Also make the toggle work when clicking the slider area
+        const toggleSlider = document.querySelector('.toggle-slider');
+        if (toggleSlider) {
+            toggleSlider.addEventListener('click', function(e) {
+                // Prevent double triggering if already handled by input
+                if (e.target !== pricingToggle) {
+                    pricingToggle.checked = !pricingToggle.checked;
+                    togglePricing(pricingToggle.checked);
+                }
+            });
+        }
+        
+        // Initialize with monthly pricing visible
+        togglePricing(false);
     }
 
     // Initial check on page load
