@@ -247,6 +247,25 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(slide);
     });
 
+    // Pricing toggle functionality
+    const pricingToggle = document.getElementById('pricing-toggle');
+    if (pricingToggle) {
+        pricingToggle.addEventListener('change', function() {
+            const monthlyPrices = document.querySelectorAll('.monthly-price');
+            const annualPrices = document.querySelectorAll('.annual-price');
+            
+            if (this.checked) {
+                // Show annual pricing
+                monthlyPrices.forEach(price => price.style.display = 'none');
+                annualPrices.forEach(price => price.style.display = 'inline');
+            } else {
+                // Show monthly pricing
+                monthlyPrices.forEach(price => price.style.display = 'inline');
+                annualPrices.forEach(price => price.style.display = 'none');
+            }
+        });
+    }
+
     // Initial check on page load
     handleScreenMode();
 });

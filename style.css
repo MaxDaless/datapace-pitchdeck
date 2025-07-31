@@ -271,7 +271,7 @@ body {
 .trend-icon { font-size: 22px; margin-right: 12px; color: var(--primary-blue); }
 .flex.items-center { display: flex; align-items: center; }
 
-/* --- Slide 5: The Solution --- */
+/* --- Slide 4: The Solution --- */
 .feature-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -309,7 +309,7 @@ body {
     color: var(--text-dark); 
 }
 
-/* --- Slide 6: How it Works --- */
+/* --- Slide 5: How it Works --- */
 .process-flow { 
     display: flex; 
     justify-content: space-between; 
@@ -375,7 +375,7 @@ body {
 }
 
 
-/* --- Slide 7: About the Founder (FIXED LAYOUT) --- */
+/* --- Slide 12: About the Founder (FIXED LAYOUT) --- */
 .founder-slide .content { justify-content: center; }
 .founder-grid { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 60px; margin-top: 20px; }
 .founder-image-container { display: flex; justify-content: center; }
@@ -386,7 +386,7 @@ body {
 .bio-item h3 { font-size: 22px; font-weight: 600; color: var(--title-blue); margin-bottom: 6px; }
 .bio-item p { font-size: 18px; color: var(--text-dark); line-height: 1.5; }
 
-/* --- Slide 8: Demo Slide --- */
+/* --- Slide 6: Demo Slide --- */
 .demo-slide-content { justify-content: center; align-items: center; gap: 40px; }
 /* STARTFIX: Added rule to make iframe responsive */
 .demo-slide-content iframe {
@@ -396,7 +396,7 @@ body {
 }
 /* ENDFIX */
 
-/* --- Slide 9: Our Moat --- */
+/* --- Slide 7: Our Moat --- */
 .moat-slide .slide-subtitle { margin-bottom: 30px; max-width: 800px; }
 .competitor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 30px; }
 .competitor-column { padding: 24px; border-radius: 12px; background-color: var(--bg-light); border-top: 4px solid var(--primary-teal); }
@@ -430,7 +430,418 @@ p {
 }
 .datapace-logo-advantage { height: 50px; width: auto; }
 .datapace-advantage p { font-size: 20px; color: var(--title-blue); font-weight: 500; margin: 0;flex: 1; /* Allows the text to take up the remaining available space */ }
-/* --- Slide 10: GTM Strategy --- */
+/* --- Slide 9: Business Model --- */
+.business-model-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+.business-model-section {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    border-left: 4px solid var(--primary-teal);
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.business-model-section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+
+.business-model-section:nth-child(1) { border-left-color: var(--primary-blue); }
+.business-model-section:nth-child(2) { border-left-color: var(--primary-teal); }
+.business-model-section:nth-child(3) { border-left-color: var(--primary-green); }
+.business-model-section:nth-child(4) { border-left-color: #8b5cf6; }
+
+.bm-section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.bm-section-title i {
+    color: var(--primary-teal);
+    font-size: 20px;
+}
+
+.bm-description {
+    font-size: 18px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.dpu-highlight {
+    background-color: rgba(20, 184, 166, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    color: var(--title-blue);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+.revenue-drivers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.driver-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.driver-icon {
+    background-color: rgba(34, 197, 94, 0.15);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.driver-icon i {
+    color: var(--primary-green);
+    font-size: 16px;
+}
+
+.driver-content {
+    font-size: 16px;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.profitability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.profit-factor {
+    background-color: rgba(248, 250, 252, 0.8);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.profit-factor h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin: 0 0 var(--spacing-sm) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.profit-factor h4 i {
+    color: var(--primary-blue);
+    font-size: 14px;
+}
+
+.profit-factor p {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- Slide 10: Pricing Strategy --- */
+.pricing-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+}
+
+/* Pricing toggle styling */
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.toggle-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.discount-badge {
+    background: var(--primary-green);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.pricing-tiers-section {
+    flex: 1;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.pricing-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-md);
+}
+
+.pricing-tier {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    border-top: 4px solid;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+}
+
+.pricing-tier:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-large);
+}
+
+.tier-free { border-top-color: #64748b; }
+.tier-pro-light { border-top-color: var(--primary-blue); }
+.tier-pro-plus { border-top-color: var(--primary-teal); }
+.tier-team { border-top-color: var(--primary-green); }
+.tier-enterprise { border-top-color: #8b5cf6; }
+
+.tier-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.tier-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.tier-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--emphasis-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.price-period {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.tier-target {
+    font-size: 12px;
+    color: var(--text-light);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.tier-dpu {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-teal);
+    background-color: rgba(20, 184, 166, 0.1);
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+    display: inline-block;
+}
+
+.tier-features {
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-dark);
+}
+
+.feature-item i {
+    color: var(--primary-teal);
+    font-size: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.feature-item i.fa-star {
+    color: var(--primary-blue);
+}
+
+.feature-item i.fa-users,
+.feature-item i.fa-share-alt,
+.feature-item i.fa-chart-bar,
+.feature-item i.fa-shield-alt {
+    color: var(--primary-green);
+}
+
+.feature-item i.fa-crown {
+    color: #8b5cf6;
+}
+
+.tier-objective {
+    background-color: rgba(20, 184, 166, 0.1);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: 11px;
+    text-align: center;
+    color: var(--title-blue);
+    font-weight: 500;
+}
+
+/* Add-ons Section */
+.addons-section {
+    background-color: rgba(248, 250, 252, 0.8);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    border: 2px dashed rgba(20, 184, 166, 0.3);
+}
+
+.addons-container {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+}
+
+.addon-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    border-left: 4px solid;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease;
+    min-width: 180px;
+}
+
+.addon-card:hover {
+    transform: translateY(-2px);
+}
+
+.addon-light { border-left-color: var(--primary-blue); }
+.addon-plus { border-left-color: var(--primary-teal); }
+
+.addon-header {
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.addon-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.addon-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--emphasis-blue);
+}
+
+.addon-period {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.addon-details {
+    text-align: center;
+}
+
+.addon-dpu {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-teal);
+    margin-bottom: var(--spacing-xs);
+}
+
+.addon-margin {
+    font-size: 12px;
+    color: var(--primary-green);
+    font-weight: 600;
+    background-color: rgba(34, 197, 94, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--border-radius);
+    display: inline-block;
+}
+
+/* --- Slide 8: GTM Strategy --- */
 .gtm-slide .content { padding: 60px 100px; }
 .gtm-slide .body-text { font-size: 20px; margin-bottom: 16px; }
 .strategy-container { display: flex; flex-direction: column; gap: 16px; }
@@ -455,18 +866,98 @@ p {
 .milestone-1 .year-label { color: var(--primary-blue); }
 .milestone-2 .year-label { color: var(--primary-teal); }
 .milestone-3 .year-label { color: var(--primary-green); }
+.milestone-header { 
+    font-size: 18px; 
+    font-weight: 600; 
+    margin-bottom: 16px; 
+    color: var(--title-blue);
+    line-height: 1.3;
+}
 .milestone-text { font-size: 20px; line-height: 1.6; color: var(--text-dark); }
 
-/* --- Slide 12: The Ask --- */
-.funding-amount { font-size: 48px; font-weight: 700; color: var(--emphasis-blue); margin: 20px 0; }
-.fund-use-item { display: flex; align-items: flex-start; margin-bottom: 20px; }
-.fund-use-icon { background-color: rgba(20, 184, 166, 0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; flex-shrink: 0; }
-.fund-use-icon svg { width: 24px; height: 24px; fill: var(--emphasis-blue); }
-.fund-use-text { padding-top: 10px; }
-.fund-use-title { font-weight: 600; font-size: 24px; color: var(--title-blue); margin-bottom: 5px; }
-.fund-use-desc { font-size: 20px; color: #475569; }
+/* --- Slide 13: The Ask --- */
+.collaboration-intro {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin: var(--spacing-lg) 0 var(--spacing-xl) 0;
+    text-align: center;
+}
 
-/* --- Slide 13: Thank You --- */
+.ask-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-lg);
+    border-left: 4px solid var(--primary-teal);
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ask-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+
+.ask-item:nth-child(4) { border-left-color: var(--primary-blue); }
+.ask-item:nth-child(5) { border-left-color: var(--primary-teal); }
+.ask-item:nth-child(6) { border-left-color: var(--primary-green); }
+
+.ask-icon {
+    background-color: rgba(20, 184, 166, 0.15);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+.ask-icon i {
+    font-size: 24px;
+    color: var(--emphasis-blue);
+}
+
+.ask-item:nth-child(4) .ask-icon {
+    background-color: rgba(14, 165, 233, 0.15);
+}
+
+.ask-item:nth-child(5) .ask-icon {
+    background-color: rgba(20, 184, 166, 0.15);
+}
+
+.ask-item:nth-child(6) .ask-icon {
+    background-color: rgba(34, 197, 94, 0.15);
+}
+
+.ask-item:nth-child(6) .ask-icon i {
+    color: var(--primary-green);
+}
+
+.ask-content {
+    flex: 1;
+}
+
+.ask-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--title-blue);
+    margin: 0 0 var(--spacing-sm) 0;
+    line-height: 1.3;
+}
+
+.ask-description {
+    font-size: 18px;
+    color: #475569;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- Slide 14: Thank You --- */
 .thank-you .content { justify-content: center; align-items: center; }
 .thanks { font-size: 64px; font-weight: 600; color: var(--emphasis-blue); margin-bottom: 60px; letter-spacing: -1px; }
 .wave-accent-thank-you { position: absolute; bottom: -60px; right: -200px; width: 1200px; opacity: 0.12; z-index: 2; }
@@ -567,6 +1058,42 @@ body.toc-open .toc-container {
 .toc-list li a:hover {
     color: var(--primary-teal);
     transform: translateX(5px);
+}
+
+/* GTM slide expand list styling */
+.expand-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.expand-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.expand-item i {
+    color: var(--primary-color);
+    font-size: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.expand-item span {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-light);
+}
+
+.expand-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* ==============================================
@@ -730,10 +1257,32 @@ body.toc-open .toc-container {
     }
     
     .feature-grid,
-    .competitor-grid {
+    .competitor-grid,
+    .pricing-container {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
+    }
+    
+    .pricing-main-container,
+    .business-model-container {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    
+    .profitability-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .revenue-drivers {
+        gap: var(--spacing-sm);
+    }
+    
+    .addons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
     }
     
     .milestone {
@@ -741,9 +1290,36 @@ body.toc-open .toc-container {
         padding: var(--spacing-md);
     }
     
-    .column {
+    .column,
+    .pricing-tier,
+    .ask-item,
+    .business-model-section {
         min-width: auto;
         margin-bottom: var(--spacing-md);
+    }
+    
+    .ask-item {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+    
+    .ask-icon {
+        margin: 0 auto var(--spacing-md) auto;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .ask-icon i {
+        font-size: 20px;
+    }
+    
+    .ask-title {
+        font-size: 20px;
+    }
+    
+    .ask-description {
+        font-size: 16px;
     }
     .process-flow {
         flex-direction: column;
@@ -990,14 +1566,32 @@ body.toc-open .toc-container {
     
     .columns-container,
     .feature-grid,
+    .pricing-container,
+    .addons-container,
     .process-flow {
         gap: var(--spacing-md);
     }
     
     .column,
+    .pricing-tier,
+    .addon-card,
+    .ask-item,
+    .business-model-section,
     .feature-card,
     .process-step {
         padding: var(--spacing-sm);
+    }
+    
+    .ask-title {
+        font-size: 18px;
+    }
+    
+    .ask-description {
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 18px;
     }
     
     /* Even tighter spacing for trends and GTM on very small screens */
