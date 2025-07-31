@@ -1,0 +1,10 @@
+Plan / Add-on,Price (USD/mo),DPUs Included,Price per DPU (USD),Cost per DPU (USD),Gross Margin %,Target User,Key Features,Rationale,Upgrade / Upsell Path
+Free,$0,10,$0.00,$0.06,N/A,Students, early testers,"Playground, community support, limited API","Low barrier; builds trust and adoption",Upgrade to Pro Light or Add-on Light Pack
+Pro Light,$15,50,$0.30,$0.06,80%,Indie devs, solo builders,"API access, priority queue, basic dashboard, usage stats","Strong entry-level value; good margin",Add-on Light Pack or upgrade to Pro Plus
+Pro Plus,$49,200,$0.245,$0.06,75%,Freelancers, power users,"Audit logs, custom pipelines, API key rotation, email support","Main monetization tier; balances value and margin",Add-on Plus Pack or upgrade to Team
+Team,$129,600,$0.215,$0.06,72%,Small teams, data engineers,"Multi-seat (5+), shared usage pool, team dashboards, optional SSO","Collaboration focus; volume discounts; team entry",Upgrade to Enterprise or add seats/DPUs
+Enterprise,Custom,1000+,$0.14–$0.18,$0.06,66–75%,Large orgs, regulated industries,"SLA, onboarding, SSO/SCIM, custom data limits, billing options","Compliance + custom needs; capture large contracts",Custom pricing and packages
+
+Add-on Light,$12 (one-time),25,$0.48,$0.06,,Pro Light and above,Additional DPUs,"High margin booster; encourages plan upgrades",Upgrade to higher plan recommended
+Add-on Plus,$21 (one-time),50,$0.42,$0.06,,Pro Plus and above,Additional DPUs,"Still high margin; better value for power users",Upgrade to higher plan recommended
+Add-on Power,$72 (one-time),200,$0.36,$0.06,,Team and above,Additional DPUs,"Premium pack for high-volume users",Upgrade to Enterprise recommended
