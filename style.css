@@ -430,7 +430,762 @@ p {
 }
 .datapace-logo-advantage { height: 50px; width: auto; }
 .datapace-advantage p { font-size: 20px; color: var(--title-blue); font-weight: 500; margin: 0;flex: 1; /* Allows the text to take up the remaining available space */ }
-/* --- Slide 9: Business Model --- */
+/* --- Slide 8: Competitive Landscape --- */
+.competitive-landscape .content { 
+    padding: 60px 80px; 
+}
+
+.competitive-landscape .body-text { 
+    font-size: 20px; 
+    margin-bottom: 32px; 
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.competitor-analysis-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 24px; 
+    margin-bottom: 40px; 
+}
+
+.competitor-card { 
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 460px;
+}
+
+.competitor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-large);
+}
+
+.competitor-card.broad-observability { border-top: 4px solid var(--primary-blue); }
+.competitor-card.data-observability { border-top: 4px solid var(--primary-teal); }
+.competitor-card.db-performance { border-top: 4px solid var(--primary-green); }
+
+.competitor-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.competitor-category {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin: 0 0 8px 0;
+}
+
+.competitor-examples {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.competitor-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.competitor-strengths h4,
+.competitor-weaknesses h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.competitor-strengths h4 {
+    color: var(--primary-green);
+}
+
+.competitor-weaknesses h4 {
+    color: #ef4444;
+}
+
+.competitor-strengths h4 i,
+.competitor-weaknesses h4 i {
+    font-size: 16px;
+}
+
+.competitor-strengths ul,
+.competitor-weaknesses ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    list-style: none;
+}
+
+.competitor-strengths li,
+.competitor-weaknesses li {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.competitor-strengths li:before {
+    content: "✓";
+    position: absolute;
+    left: -15px;
+    color: var(--primary-green);
+    font-weight: bold;
+}
+
+.competitor-weaknesses li:before {
+    content: "×";
+    position: absolute;
+    left: -15px;
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.datapace-positioning {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 32px;
+    border: 2px solid rgba(14, 165, 233, 0.1);
+    margin-top: 32px;
+}
+
+.positioning-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.positioning-logo {
+    height: 40px;
+    width: auto;
+}
+
+.positioning-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin: 0;
+}
+
+.positioning-points {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.positioning-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease;
+}
+
+.positioning-point:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.point-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-teal) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.point-icon i {
+    color: white;
+    font-size: 18px;
+}
+
+.point-text {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--text-dark);
+}
+
+.point-text strong {
+    color: var(--title-blue);
+    font-weight: 600;
+}
+
+/* Mobile responsiveness for competitive landscape */
+@media (max-width: 1024px) {
+    .competitive-landscape .content {
+        padding: 40px 20px;
+    }
+    
+    .competitor-analysis-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .competitor-card {
+        min-height: auto;
+        padding: 20px;
+    }
+    
+    .datapace-positioning {
+        padding: 24px 16px;
+    }
+    
+    .positioning-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .positioning-points {
+        gap: 12px;
+    }
+    
+    .positioning-point {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .point-icon {
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .competitive-landscape .body-text {
+        font-size: 16px;
+    }
+    
+    .competitor-category {
+        font-size: 16px;
+    }
+    
+    .competitor-examples {
+        font-size: 12px;
+    }
+    
+    .positioning-title {
+        font-size: 20px;
+    }
+    
+    .point-text {
+        font-size: 14px;
+    }
+}
+
+/* --- Slide 9: Go-to-Market Strategy --- */
+.gtm-slide .content {
+    padding: 50px 60px;
+}
+
+.gtm-slide .slide-subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gtm-strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.gtm-phase {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-medium);
+    border-left: 4px solid;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gtm-phase:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+
+.phase-land {
+    border-left-color: var(--primary-blue);
+}
+
+.phase-expand {
+    border-left-color: var(--primary-teal);
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(14, 165, 233, 0.1);
+}
+
+.phase-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.phase-land .phase-icon {
+    background: var(--primary-blue);
+}
+
+.phase-expand .phase-icon {
+    background: var(--primary-teal);
+}
+
+.phase-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin: 0;
+    flex: 1;
+}
+
+.phase-timeline {
+    font-size: 12px;
+    color: var(--text-light);
+    background-color: rgba(14, 165, 233, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.section-header {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-header i {
+    color: var(--primary-teal);
+}
+
+.target-details {
+    margin-bottom: 20px;
+}
+
+.target-persona {
+    background-color: rgba(14, 165, 233, 0.05);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.persona-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--title-blue);
+}
+
+.target-persona p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-dark);
+}
+
+.verticals-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--title-blue);
+}
+
+.verticals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.vertical-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease;
+    border-top: 3px solid;
+}
+
+.vertical-card:hover {
+    transform: translateY(-1px);
+}
+
+.vertical-card.ecommerce {
+    border-top-color: var(--primary-blue);
+}
+
+.vertical-card.fintech {
+    border-top-color: var(--primary-teal);
+}
+
+.vertical-card.saas {
+    border-top-color: var(--primary-green);
+}
+
+.vertical-card i {
+    font-size: 16px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.vertical-card.ecommerce i {
+    color: var(--primary-blue);
+}
+
+.vertical-card.fintech i {
+    color: var(--primary-teal);
+}
+
+.vertical-card.saas i {
+    color: var(--primary-green);
+}
+
+.vertical-card span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--title-blue);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.vertical-card small {
+    font-size: 10px;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.tactics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tactic-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease;
+}
+
+.tactic-item:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.tactic-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-teal) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.tactic-content {
+    flex: 1;
+}
+
+.tactic-content strong {
+    font-size: 13px;
+    color: var(--title-blue);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.tactic-content p {
+    font-size: 12px;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.expansion-vectors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.vector-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 12px;
+    border-radius: var(--border-radius);
+}
+
+.vector-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.vector-icon.enterprise {
+    background: var(--primary-blue);
+}
+
+.vector-icon.financial {
+    background: var(--primary-teal);
+}
+
+.vector-icon.database {
+    background: var(--primary-green);
+}
+
+.vector-icon.consumption {
+    background: #8b5cf6;
+}
+
+.vector-content strong {
+    font-size: 12px;
+    color: var(--title-blue);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.vector-content p {
+    font-size: 11px;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    border-top: 3px solid var(--primary-teal);
+}
+
+.metric-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.distribution-channels {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.03) 0%, rgba(20, 184, 166, 0.03) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    border: 2px solid rgba(14, 165, 233, 0.08);
+}
+
+.channels-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--title-blue);
+    margin: 0 0 20px 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.channels-title i {
+    color: var(--primary-teal);
+}
+
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.channel-item {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.channel-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.channel-item.plg {
+    border-top: 3px solid var(--primary-blue);
+}
+
+.channel-item.content {
+    border-top: 3px solid var(--primary-teal);
+}
+
+.channel-item.community {
+    border-top: 3px solid var(--primary-green);
+}
+
+.channel-item.partnerships {
+    border-top: 3px solid #8b5cf6;
+}
+
+.channel-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+}
+
+.channel-item.plg .channel-icon {
+    background: var(--primary-blue);
+}
+
+.channel-item.content .channel-icon {
+    background: var(--primary-teal);
+}
+
+.channel-item.community .channel-icon {
+    background: var(--primary-green);
+}
+
+.channel-item.partnerships .channel-icon {
+    background: #8b5cf6;
+}
+
+.channel-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--title-blue);
+    margin: 0 0 8px 0;
+}
+
+.channel-item p {
+    font-size: 12px;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Mobile responsiveness for GTM strategy */
+@media (max-width: 1024px) {
+    .gtm-slide .content {
+        padding: 40px 20px;
+    }
+    
+    .gtm-strategy-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .channels-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .expansion-vectors {
+        grid-template-columns: 1fr;
+    }
+    
+    .verticals-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gtm-slide .slide-subtitle {
+        font-size: 16px;
+    }
+    
+    .phase-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .channels-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .channels-title {
+        font-size: 18px;
+    }
+}
+
+/* --- Slide 10: Business Model --- */
 .business-model-container {
     display: flex;
     flex-direction: column;

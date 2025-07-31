@@ -81,15 +81,15 @@
                             <h2 class="column-title"><i class="fas fa-dollar-sign"></i>Financial Cost (Opex)</h2>
                             <h3 class="column-subtitle">Bloated Cloud Bills</h3>
                             <p class="column-text">Inefficient queries & over-provisioning directly increase cloud costs.</p>
-                            <div class="highlight financial-highlight">Fixing one bad query can save $22k+/month.</div>
-                            <p class="source-text">*Source: Reddit r/bigquery, 2025</p>
+                            <div class="highlight financial-highlight">32% of cloud spend is wasted.</div>
+                            <p class="source-text">*Source: CloudZero, 2023</p>
                         </div>
                         <div class="column column-revenue">
                             <h2 class="column-title"><i class="fas fa-chart-line"></i>Revenue Impact</h2>
                             <h3 class="column-subtitle">Poor User Experience</h3>
                             <p class="column-text">Latency leads to higher bounce rates, lower conversions, and customer churn.</p>
-                            <div class="highlight revenue-highlight">A 0.1s delay can cost 8% in conversions.</div>
-                             <p class="source-text">*Source: Deloitte, 2020</p>
+                            <div class="highlight revenue-highlight">Database downtime costs $5,600 per minute.</div>
+                             <p class="source-text">*Source: Ponemon Institute</p>
                         </div>
                         <div class="column column-productivity">
                             <h2 class="column-title"><i class="fas fa-user-clock"></i>Productivity Drain</h2>
@@ -206,37 +206,117 @@
             </div>
         </div>
         <div class="slide">
-            <div class="slide-container moat-slide">
-                <svg class="wave-accent-bottom" style="opacity: 0.1; bottom: -120px;" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
+            <div class="slide-container competitive-landscape">
+                <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
+                <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
                 <div class="content">
-                    <h1 class="slide-title">Our Unique Moat: Navigating the Performance Landscape</h1>
-                    <p class="slide-subtitle">The market is fractured into three types of players who only solve part of the problem.</p>
-                    <div class="competitor-grid">
-                        <div class="competitor-column">
-                            <h3 class="competitor-title">Broad Observability</h3>
-                            <div class="logo-group">
-								<span class="logo-placeholder">Datadog / New Relic</span>
+                    <h1 class="slide-title">Our Unique Moat: Navigating the Database Performance Landscape</h1>
+                    <p class="body-text">The database performance market is fragmented across three distinct categories, each solving only part of the problem. Datapace uniquely bridges these gaps.</p>
+                    
+                    <div class="competitor-analysis-grid">
+                        <div class="competitor-card broad-observability">
+                            <div class="competitor-header">
+                                <h3 class="competitor-category">Broad Observability Platforms</h3>
+                                <div class="competitor-examples">Datadog, New Relic, Splunk</div>
                             </div>
-                            <p class="competitor-desc">"Mile-wide" platforms that show you symptoms (e.g., high CPU), but lack the deep, prescriptive fixes developers need.</p>
+                            <div class="competitor-body">
+                                <div class="competitor-strengths">
+                                    <h4><i class="fas fa-check-circle"></i> Strengths</h4>
+                                    <ul>
+                                        <li>Comprehensive infrastructure monitoring</li>
+                                        <li>Strong brand recognition and enterprise sales</li>
+                                        <li>Wide ecosystem integrations</li>
+                                    </ul>
+                                </div>
+                                <div class="competitor-weaknesses">
+                                    <h4><i class="fas fa-times-circle"></i> Gaps</h4>
+                                    <ul>
+                                        <li><strong>Surface-level insights:</strong> Show symptoms, not root causes</li>
+                                        <li><strong>Generic recommendations:</strong> "Add more memory" without context</li>
+                                        <li><strong>Developer friction:</strong> Complex dashboards built for ops teams</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="competitor-column">
-                            <h3 class="competitor-title">Data Observability</h3>
-                            <div class="logo-group">
-                                <span class="logo-placeholder">Sifflet / Monte Carlo</span>
+
+                        <div class="competitor-card data-observability">
+                            <div class="competitor-header">
+                                <h3 class="competitor-category">Data Observability Tools</h3>
+                                <div class="competitor-examples">Monte Carlo, Sifflet, Acceldata</div>
                             </div>
-                            <p class="competitor-desc">Focus on data quality and pipeline integrity, not the real-time operational performance of transactional databases.</p>
+                            <div class="competitor-body">
+                                <div class="competitor-strengths">
+                                    <h4><i class="fas fa-check-circle"></i> Strengths</h4>
+                                    <ul>
+                                        <li>Excellent data quality monitoring</li>
+                                        <li>Pipeline reliability tracking</li>
+                                        <li>Data lineage visualization</li>
+                                    </ul>
+                                </div>
+                                <div class="competitor-weaknesses">
+                                    <h4><i class="fas fa-times-circle"></i> Gaps</h4>
+                                    <ul>
+                                        <li><strong>Analytics focus:</strong> Designed for data pipelines, not transactional DBs</li>
+                                        <li><strong>Limited performance insights:</strong> Don't address query optimization</li>
+                                        <li><strong>Wrong audience:</strong> Built for data engineers, not app developers</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="competitor-column">
-                            <h3 class="competitor-title">DBA-Centric Tools</h3>
-                            <div class="logo-group">
-                                <span class="logo-placeholder">pganalyze / Redgate</span>
+
+                        <div class="competitor-card db-performance">
+                            <div class="competitor-header">
+                                <h3 class="competitor-category">Database-Specific Tools</h3>
+                                <div class="competitor-examples">pganalyze, Redgate, SolarWinds DPA</div>
                             </div>
-                            <p class="competitor-desc">"Mile-deep" tools that provide granular metrics but are built for expert DBAs, not the everyday developer.</p>
+                            <div class="competitor-body">
+                                <div class="competitor-strengths">
+                                    <h4><i class="fas fa-check-circle"></i> Strengths</h4>
+                                    <ul>
+                                        <li>Deep database-specific metrics</li>
+                                        <li>Detailed query analysis capabilities</li>
+                                        <li>Strong technical depth</li>
+                                    </ul>
+                                </div>
+                                <div class="competitor-weaknesses">
+                                    <h4><i class="fas fa-times-circle"></i> Gaps</h4>
+                                    <ul>
+                                        <li><strong>DBA-centric design:</strong> Too complex for everyday developers</li>
+                                        <li><strong>Manual interpretation:</strong> Raw metrics without actionable guidance</li>
+                                        <li><strong>Reactive approach:</strong> Help debug after problems occur</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="datapace-advantage">
-                        <img src="assets/logo.png" alt="Datapace Logo" class="datapace-logo-advantage">
-                        <p>Datapace is the missing layer. We combine a <span class="emphasis">"mile-deep"</span> focus with a <span class="emphasis">developer-first</span> approach to deliver <span class="emphasis">prescriptive, AI-driven fixes</span> that democratize DBA-level expertise.</p>
+
+                    <div class="datapace-positioning">
+                        <div class="positioning-header">
+                            <img src="assets/logo.png" alt="Datapace Logo" class="positioning-logo">
+                            <h3 class="positioning-title">Datapace: The Missing Layer</h3>
+                        </div>
+                        <div class="positioning-content">
+                            <div class="positioning-points">
+                                <div class="positioning-point">
+                                    <div class="point-icon"><i class="fas fa-brain"></i></div>
+                                    <div class="point-text">
+                                        <strong>AI-Driven Prescriptive Analysis:</strong> Goes beyond monitoring to provide specific, actionable optimization recommendations
+                                    </div>
+                                </div>
+                                <div class="positioning-point">
+                                    <div class="point-icon"><i class="fas fa-code"></i></div>
+                                    <div class="point-text">
+                                        <strong>Developer-First Experience:</strong> Designed for the 23M+ developers who manage databases, not just DBAs
+                                    </div>
+                                </div>
+                                <div class="positioning-point">
+                                    <div class="point-icon"><i class="fas fa-zap"></i></div>
+                                    <div class="point-text">
+                                        <strong>Proactive Performance Optimization:</strong> Prevents problems before they impact users, rather than alerting after the fact
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,41 +327,165 @@
                 <svg class="wave-bg-right" viewBox="0 0 800 800"><path d="M0,250 C100,150 200,350 300,250 C400,150 500,350 600,250 C700,150 800,350 900,250" fill="none" stroke="#0ea5e9" stroke-width="60"></path><path d="M0,350 C100,250 200,450 300,350 C400,250 500,450 600,350 C700,250 800,450 900,350" fill="none" stroke="#14b8a6" stroke-width="60"></path><path d="M0,450 C100,350 200,550 300,450 C400,350 500,550 600,450 C700,350 800,550 900,450" fill="none" stroke="#22c55e" stroke-width="60"></path></svg>
                 <svg class="wave-accent-bottom" viewBox="0 0 1000 200"><path d="M-100,120 C100,50 200,180 400,80 C600,-20 800,150 1000,80" fill="none" stroke="#0ea5e9" stroke-width="15"></path><path d="M-100,150 C100,80 200,210 400,110 C600,10 800,180 1000,110" fill="none" stroke="#14b8a6" stroke-width="15"></path><path d="M-100,180 C100,110 200,240 400,140 C600,40 800,210 1000,140" fill="none" stroke="#22c55e" stroke-width="15"></path></svg>
                 <div class="content">
-                    <h1 class="slide-title">Go-to-Market Strategy: A Focused Beachhead</h1>
-                    <p class="body-text">Our strategy is to win a specific, high-value market first, then expand.</p>
-                    <div class="strategy-container">
-                        <div class="strategy-section">
-                            <h2 class="strategy-title"><i class="fas fa-flag"></i>1. Land (The Beachhead):</h2>
-                            <div class="target-list">
-                                <div class="target-item"><i class="fas fa-user-tie"></i><div class="target-content"><span class="emphasis">Target Persona:</span> Tech Leads & Senior Engineers at high-growth (Series B-D) companies, typically managing 5+ PostgreSQL instances and lacking dedicated in-house DBAs.</div></div>
-                                <div class="target-item"><i class="fas fa-building"></i><div class="target-content"><span class="emphasis">Target Verticals:</span> We will focus on sectors where database latency is a C-level concern:
-                                    <div class="target-verticals"><span class="vertical-badge"><i class="fas fa-shopping-cart mr-2"></i> E-commerce</span><span class="vertical-badge"><i class="fas fa-chart-line mr-2"></i> FinTech</span><span class="vertical-badge"><i class="fas fa-cloud mr-2"></i> B2B SaaS</span></div></div></div>
-                                <div class="target-item"><i class="fas fa-code"></i><div class="target-content"><span class="emphasis">Technical Wedge:</span> PostgreSQL Performance. We will be the undisputed best <span class="emphasis">AI-driven solution</span> for this stack, leveraging our PoC and deep understanding.
-                                </div></div>
-                                <div class="target-item"><i class="fas fa-rocket"></i><div class="target-content"><span class="emphasis">Motion:</span> Win developer trust via a powerful free tier, <span class="emphasis">intuitive product-led onboarding</span>, and targeted technical content/community engagement to drive bottoms-up adoption.
-                                </div></div>
+                    <h1 class="slide-title">Go-to-Market Strategy: Strategic Beachhead to Market Leadership</h1>
+                    <p class="slide-subtitle">A disciplined approach to capture the PostgreSQL performance market, then expand to become the definitive database optimization platform.</p>
+                    
+                    <div class="gtm-strategy-grid">
+                        <div class="gtm-phase phase-land">
+                            <div class="phase-header">
+                                <div class="phase-icon"><i class="fas fa-flag"></i></div>
+                                <h2 class="phase-title">Phase 1: Land the Beachhead</h2>
+                                <div class="phase-timeline">2025</div>
+                            </div>
+                            
+                            <div class="target-market-section">
+                                <h3 class="section-header"><i class="fas fa-crosshairs"></i>Target Market</h3>
+                                <div class="target-details">
+                                    <div class="target-persona">
+                                        <div class="persona-header">
+                                            <i class="fas fa-user-tie"></i>
+                                            <strong>Primary Persona</strong>
+                                        </div>
+                                        <p>Tech Leads & Senior Engineers at Series B-D companies managing 5+ PostgreSQL instances without dedicated DBAs</p>
+                                    </div>
+                                    
+                                    <div class="target-verticals-section">
+                                        <div class="verticals-header">
+                                            <i class="fas fa-building"></i>
+                                            <strong>High-Value Verticals</strong>
+                                        </div>
+                                        <div class="verticals-grid">
+                                            <div class="vertical-card ecommerce">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>E-commerce</span>
+                                                <small>Latency = Lost Revenue</small>
+                                            </div>
+                                            <div class="vertical-card fintech">
+                                                <i class="fas fa-chart-line"></i>
+                                                <span>FinTech</span>
+                                                <small>Performance = Trust</small>
+                                            </div>
+                                            <div class="vertical-card saas">
+                                                <i class="fas fa-cloud"></i>
+                                                <span>B2B SaaS</span>
+                                                <small>Scale = Success</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="strategy-tactics">
+                                <h3 class="section-header"><i class="fas fa-chess"></i>Key Tactics</h3>
+                                <div class="tactics-list">
+                                    <div class="tactic-item">
+                                        <div class="tactic-icon"><i class="fas fa-gift"></i></div>
+                                        <div class="tactic-content">
+                                            <strong>Powerful Free Tier</strong>
+                                            <p>10 DPUs monthly, full feature access to build trust and demonstrate value</p>
+                                        </div>
+                                    </div>
+                                    <div class="tactic-item">
+                                        <div class="tactic-icon"><i class="fas fa-code"></i></div>
+                                        <div class="tactic-content">
+                                            <strong>Database Performance Community Leadership</strong>
+                                            <p>Technical content, conference speaking, open-source contributions</p>
+                                        </div>
+                                    </div>
+                                    <div class="tactic-item">
+                                        <div class="tactic-icon"><i class="fas fa-rocket"></i></div>
+                                        <div class="tactic-content">
+                                            <strong>Product-Led Growth</strong>
+                                            <p>Intuitive onboarding, viral sharing, in-product upgrade prompts</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="strategy-section">
-                            <h2 class="strategy-title"><i class="fas fa-expand-alt"></i>2. Expand:</h2>
-                            <p class="body-text" style="font-size: 18px; margin-bottom: 16px;">Once embedded, we expand across the organization and upmarket by:</p>
-                            <div class="expand-list">
-                                <div class="expand-item">
-                                    <i class="fas fa-shield-alt"></i>
-                                    <span>Introducing <strong>enterprise features</strong> (e.g., advanced security controls, SSO for larger teams).</span>
+
+                        <div class="gtm-phase phase-expand">
+                            <div class="phase-header">
+                                <div class="phase-icon"><i class="fas fa-expand-alt"></i></div>
+                                <h2 class="phase-title">Phase 2: Scale & Expand</h2>
+                                <div class="phase-timeline">2026 - 2027</div>
+                            </div>
+
+                            <div class="expansion-strategy">
+                                <h3 class="section-header"><i class="fas fa-chart-line"></i>Growth Vectors</h3>
+                                <div class="expansion-vectors">
+                                    <div class="vector-item">
+                                        <div class="vector-icon enterprise"><i class="fas fa-building"></i></div>
+                                        <div class="vector-content">
+                                            <strong>Enterprise Features</strong>
+                                            <p>SSO, audit logs, custom SLAs, security controls</p>
+                                        </div>
+                                    </div>
+                                    <div class="vector-item">
+                                        <div class="vector-icon financial"><i class="fas fa-calculator"></i></div>
+                                        <div class="vector-content">
+                                            <strong>FinOps Integration</strong>
+                                            <p>Cost optimization dashboards for CFOs and finance teams</p>
+                                        </div>
+                                    </div>
+                                    <div class="vector-item">
+                                        <div class="vector-icon database"><i class="fas fa-database"></i></div>
+                                        <div class="vector-content">
+                                            <strong>Multi-Database Support</strong>
+                                            <p>Expand to MySQL, MongoDB, Snowflake, and other critical systems</p>
+                                        </div>
+                                    </div>
+                                    <div class="vector-item">
+                                        <div class="vector-icon consumption"><i class="fas fa-arrow-up"></i></div>
+                                        <div class="vector-content">
+                                            <strong>Usage Expansion</strong>
+                                            <p>Drive increased DPU consumption through advanced analytics</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="expand-item">
-                                    <i class="fas fa-chart-bar"></i>
-                                    <span>Offering <strong>FinOps dashboards</strong> for CFOs, directly linking engineering effort to financial impact.</span>
+                            </div>
+
+                            <div class="success-metrics">
+                                <h3 class="section-header"><i class="fas fa-target"></i>Success Metrics</h3>
+                                <div class="metrics-grid">
+                                    <div class="metric-card">
+                                        <div class="metric-value">$1M</div>
+                                        <div class="metric-label">ARR Target</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-value">200+</div>
+                                        <div class="metric-label">Paying Customers</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="metric-value">$200</div>
+                                        <div class="metric-label">Avg. ACV</div>
+                                    </div>
                                 </div>
-                                <div class="expand-item">
-                                    <i class="fas fa-database"></i>
-                                    <span>Adding support for other critical data stores (<strong>Snowflake, MySQL, MongoDB</strong>) to serve the full database footprint.</span>
-                                </div>
-                                <div class="expand-item">
-                                    <i class="fas fa-arrow-up"></i>
-                                    <span>Driving increased <strong>DPU consumption</strong> as customers scale their usage and analytical needs.</span>
-                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="distribution-channels">
+                        <h2 class="channels-title"><i class="fas fa-network-wired"></i>Distribution & Growth Channels</h2>
+                        <div class="channels-grid">
+                            <div class="channel-item plg">
+                                <div class="channel-icon"><i class="fas fa-users"></i></div>
+                                <h4>Product-Led Growth</h4>
+                                <p>Freemium model with viral features and usage-based expansion</p>
+                            </div>
+                            <div class="channel-item content">
+                                <div class="channel-icon"><i class="fas fa-pen-nib"></i></div>
+                                <h4>Technical Content</h4>
+                                <p>SEO-optimized content ranking #1 for PostgreSQL performance queries</p>
+                            </div>
+                            <div class="channel-item community">
+                                <div class="channel-icon"><i class="fas fa-handshake"></i></div>
+                                <h4>Developer Relations</h4>
+                                <p>Conference speaking, community building, and technical evangelism</p>
+                            </div>
+                            <div class="channel-item partnerships">
+                                <div class="channel-icon"><i class="fas fa-store"></i></div>
+                                <h4>Strategic Partnerships</h4>
+                                <p>Cloud marketplaces, consulting firms, and database vendor ecosystems</p>
                             </div>
                         </div>
                     </div>
