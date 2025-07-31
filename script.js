@@ -254,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const monthlyPrices = document.querySelectorAll('.monthly-price');
             const annualPrices = document.querySelectorAll('.annual-price');
             
+            console.log('Toggle pricing called:', showAnnual, 'Monthly elements:', monthlyPrices.length, 'Annual elements:', annualPrices.length);
+            
             if (showAnnual) {
                 // Show annual pricing
                 monthlyPrices.forEach(price => price.style.display = 'none');
@@ -265,20 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Add event listener for toggle change
-        pricingToggle.addEventListener('change', function() {
+        // Simple event listener for toggle change
+        pricingToggle.addEventListener('change', function(e) {
+            console.log('Toggle changed:', this.checked);
             togglePricing(this.checked);
         });
         
-        // Also make the toggle work when clicking the slider area
-        const toggleSlider = document.querySelector('.toggle-slider');
-        if (toggleSlider) {
-            toggleSlider.addEventListener('click', function(e) {
-                // Prevent double triggering if already handled by input
-                if (e.target !== pricingToggle) {
-                    pricingToggle.checked = !pricingToggle.checked;
-                    togglePricing(pricingToggle.checked);
-                }
+        // Also handle clicks on the entire toggle switch label
+        const toggleSwitchLabel = pricingToggle.parentElement;
+        if (toggleSwitchLabel) {
+            toggleSwitchLabel.addEventListener('click', function(e) {
+                // Let the default behavior handle the input change
+                console.log('Toggle switch clicked');
             });
         }
         
