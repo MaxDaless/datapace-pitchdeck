@@ -1069,10 +1069,6 @@ body.toc-open .toc-container {
     gap: 10px;
 }
 
-.toc-title::before {
-    content: "📋";
-    font-size: 20px;
-}
 
 .toc-content {
     flex: 1;
