@@ -1,0 +1,16 @@
+SLIDE 4: Market Opportunity
+(Insert after current Problem slide, before Solution)
+Title: "Massive & Growing Market Opportunity"
+Content:
+
+TAM: $13-15B (Database Performance + Observability)
+
+Database Performance Monitoring: $2.7B → $8.98B by 2032¹
+Broader Observability Market: $3.2B → $9.2B by 2034²
+
+
+SAM: $400-600M (North America developer-first segment)
+SOM: $2-6M ARR (Realistic 5-year target)
+Growth Rate: 12-14% CAGR (3-5x faster than GDP)
+
+Sources: ¹Fortune Business Insights, ²Market.us

@@ -1,0 +1,36 @@
+Go-to-Market Strategy: A Focused Beachhead
+Our strategy is to win a specific, high-value market first, then expand.
+
+1. Land (The Beachhead):
+
+Target Persona:
+
+Tech Leads & Senior Engineers at high-growth (Series B-D) companies, typically managing 5+ PostgreSQL instances and lacking dedicated in-house DBAs.
+
+Target Verticals: We will focus on sectors where database latency is a C-level concern:
+
+E-commerce
+
+FinTech
+
+B2B SaaS
+
+Technical Wedge:
+
+PostgreSQL Performance. We will be the undisputed best AI-driven solution for this stack, leveraging our PoC and deep understanding.
+
+Motion:
+
+Win developer trust via a powerful free tier, intuitive product-led onboarding, and targeted technical content/community engagement to drive bottoms-up adoption.
+
+2. Expand:
+
+Once embedded, we expand across the organization and upmarket by:
+
+Introducing enterprise features (e.g., advanced security controls, SSO for larger teams).
+
+Offering FinOps dashboards for CFOs, directly linking engineering effort to financial impact.
+
+Adding support for other critical data stores (Snowflake, MySQL, MongoDB) to serve the full database footprint.
+
+Driving increased DPU consumption as customers scale their usage and analytical needs.
