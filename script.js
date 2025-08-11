@@ -77,22 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
 
     // Check if we have LinkedIn profile data from callback
-    // Updated: No email field - only company and access code required
     const existingLinkedInProfile = sessionStorage.getItem('linkedin_profile');
     if (existingLinkedInProfile) {
         const profileData = JSON.parse(existingLinkedInProfile);
         console.log('Found existing LinkedIn profile:', profileData);
         
-        // Show the form without prefilled data
+        // Hide LinkedIn button and show the form
+        document.getElementById('linkedin-step').style.display = 'none';
         document.getElementById('auth-form').style.display = 'block';
+        
+        // Show user info in the success banner
+        document.getElementById('linkedin-user-info').textContent = 
+            `Welcome ${profileData.fullName}! Please complete your authentication below.`;
         
         // Focus on company field first
         document.getElementById('company').focus();
-        
-        // Show welcome message
-        setTimeout(() => {
-            alert(`Welcome ${profileData.firstName}! Please enter your organization and access code to continue.`);
-        }, 100);
     }
 
     // Check if user is already authenticated
@@ -349,9 +348,15 @@ document.addEventListener('DOMContentLoaded', () => {
     backToAuthBtn.addEventListener('click', () => {
         ndaForm.style.display = 'none';
         loginForm.style.display = 'block';
+        
+        // Reset to LinkedIn step
+        document.getElementById('linkedin-step').style.display = 'block';
         document.getElementById('auth-form').style.display = 'none';
+        
+        // Clear session data
         sessionStorage.removeItem('temp_auth');
         sessionStorage.removeItem('linkedin_profile');
+        
         // Clear form fields
         document.getElementById('company').value = '';
         document.getElementById('access-code').value = '';
@@ -365,10 +370,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm('Are you sure you want to logout? You will need to re-authenticate to access the presentation.')) {
             localStorage.removeItem('datapace_auth');
             sessionStorage.removeItem('temp_auth');
+            sessionStorage.removeItem('linkedin_profile');
             presentationContainer.style.display = 'none';
             authContainer.style.display = 'flex';
             loginForm.style.display = 'block';
             ndaForm.style.display = 'none';
+            
+            // Reset to LinkedIn step
+            document.getElementById('linkedin-step').style.display = 'block';
+            document.getElementById('auth-form').style.display = 'none';
             
             // Allow scrolling for auth forms on mobile
             document.body.style.overflow = 'auto';
