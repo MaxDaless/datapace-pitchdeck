@@ -1,0 +1,100 @@
+// Supabase Edge Function for LinkedIn OAuth
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { corsHeaders } from '../_shared/cors.ts'
+
+serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
+  try {
+    const { action, code, redirectUri, accessToken } = await req.json()
+
+    if (action === 'exchange_token') {
+      // Exchange authorization code for access token
+      const tokenUrl = 'https://www.linkedin.com/oauth/v2/accessToken'
+      const params = new URLSearchParams({
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: redirectUri,
+        client_id: Deno.env.get('LINKEDIN_CLIENT_ID') || '77bb4l8debdzn3',
+        client_secret: Deno.env.get('LINKEDIN_CLIENT_SECRET') || ''
+      })
+
+      const response = await fetch(tokenUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params
+      })
+
+      if (!response.ok) {
+        throw new Error(`LinkedIn token exchange failed: ${response.status}`)
+      }
+
+      const tokenData = await response.json()
+      
+      return new Response(
+        JSON.stringify(tokenData),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
+      )
+    }
+
+    if (action === 'get_profile') {
+      // Get user profile data from LinkedIn
+      const profileResponse = await fetch('https://api.linkedin.com/v2/userinfo', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (!profileResponse.ok) {
+        throw new Error(`LinkedIn profile fetch failed: ${profileResponse.status}`)
+      }
+
+      const profileData = await profileResponse.json()
+      
+      return new Response(
+        JSON.stringify(profileData),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
+      )
+    }
+
+    return new Response(
+      JSON.stringify({ error: 'Invalid action' }),
+      { 
+        status: 400,
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json' 
+        } 
+      }
+    )
+
+  } catch (error) {
+    console.error('LinkedIn auth error:', error)
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      { 
+        status: 500,
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json' 
+        } 
+      }
+    )
+  }
+})

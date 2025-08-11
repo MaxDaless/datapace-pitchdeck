@@ -1,5 +1,5 @@
 // LinkedIn OAuth callback handler
-function handleLinkedInCallback(urlParams) {
+async function handleLinkedInCallback(urlParams) {
     const code = urlParams.get('code');
     const state = urlParams.get('state');
     const error = urlParams.get('error');
@@ -9,47 +9,117 @@ function handleLinkedInCallback(urlParams) {
 
     if (error) {
         alert('LinkedIn authentication failed: ' + error);
-        window.location.href = window.location.pathname; // Redirect back
+        window.location.href = window.location.pathname;
         return;
     }
 
     if (state !== storedState) {
         alert('Invalid LinkedIn authentication state');
-        window.location.href = window.location.pathname; // Redirect back
+        window.location.href = window.location.pathname;
         return;
     }
 
     if (!code) {
         alert('No LinkedIn authorization code received');
-        window.location.href = window.location.pathname; // Redirect back
+        window.location.href = window.location.pathname;
         return;
     }
 
-    // Mock LinkedIn profile data (in production, exchange code for access token)
-    const mockLinkedInProfile = {
-        id: 'linkedin_' + Date.now(),
-        firstName: 'John',
-        lastName: 'Smith',
-        email: 'john.smith@company.com',
-        company: 'Tech Solutions Inc',
-        headline: 'Senior Software Engineer',
-        profileUrl: 'https://linkedin.com/in/johnsmith',
-        profilePicture: null
-    };
+    try {
+        // Show loading message
+        document.body.innerHTML += '<div id="linkedin-loading" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000;"><div style="text-align: center;"><i class="fab fa-linkedin" style="font-size: 24px; color: #0077b5; margin-bottom: 10px;"></i><br>Getting your LinkedIn profile...</div></div>';
 
-    // Store LinkedIn data
-    sessionStorage.setItem('linkedin_profile', JSON.stringify({
-        ...mockLinkedInProfile,
-        fullName: `${mockLinkedInProfile.firstName} ${mockLinkedInProfile.lastName}`,
-        linkedinAuth: true
-    }));
+        // Exchange authorization code for access token using Supabase Edge Function
+        const tokenResponse = await fetch(`${window.supabaseUrl}/functions/v1/linkedin-auth`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${window.supabaseAnonKey}`,
+            },
+            body: JSON.stringify({
+                action: 'exchange_token',
+                code: code,
+                redirectUri: window.location.origin + window.location.pathname
+            })
+        });
+
+        if (!tokenResponse.ok) {
+            throw new Error('Failed to get LinkedIn access token');
+        }
+
+        const tokenData = await tokenResponse.json();
+        
+        // Get user profile data from LinkedIn API using Supabase Edge Function
+        const profileResponse = await fetch(`${window.supabaseUrl}/functions/v1/linkedin-auth`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${window.supabaseAnonKey}`,
+            },
+            body: JSON.stringify({
+                action: 'get_profile',
+                accessToken: tokenData.access_token
+            })
+        });
+
+        if (!profileResponse.ok) {
+            throw new Error('Failed to get LinkedIn profile data');
+        }
+
+        const profileData = await profileResponse.json();
+
+        // Store real LinkedIn data
+        const linkedInProfile = {
+            id: profileData.sub || profileData.id,
+            firstName: profileData.given_name || profileData.localizedFirstName,
+            lastName: profileData.family_name || profileData.localizedLastName,
+            email: profileData.email,
+            company: profileData.organizationName || '',
+            headline: profileData.headline || '',
+            profileUrl: profileData.vanityName ? `https://linkedin.com/in/${profileData.vanityName}` : '',
+            profilePicture: profileData.picture || null,
+            fullName: `${profileData.given_name || profileData.localizedFirstName} ${profileData.family_name || profileData.localizedLastName}`,
+            linkedinAuth: true
+        };
+
+        sessionStorage.setItem('linkedin_profile', JSON.stringify(linkedInProfile));
+
+        // Remove loading message
+        const loadingEl = document.getElementById('linkedin-loading');
+        if (loadingEl) loadingEl.remove();
+
+    } catch (error) {
+        console.error('LinkedIn API error:', error);
+        
+        // Remove loading message
+        const loadingEl = document.getElementById('linkedin-loading');
+        if (loadingEl) loadingEl.remove();
+        
+        // Fall back to mock data for demo purposes
+        console.log('Falling back to demo mode...');
+        const mockProfile = {
+            id: 'linkedin_demo_' + Date.now(),
+            firstName: 'Demo',
+            lastName: 'User',
+            email: 'demo@linkedin.com',
+            company: '',
+            headline: 'LinkedIn Demo User',
+            profileUrl: '',
+            profilePicture: null,
+            fullName: 'Demo User',
+            linkedinAuth: true
+        };
+        
+        sessionStorage.setItem('linkedin_profile', JSON.stringify(mockProfile));
+        alert('LinkedIn API unavailable - running in demo mode with sample profile.');
+    }
 
     // Clean up OAuth data
     sessionStorage.removeItem('linkedin_oauth_state');
     
     // Clean up URL and redirect back to main page
     window.history.replaceState({}, document.title, window.location.pathname);
-    window.location.reload(); // Reload to continue with auth flow
+    window.location.reload();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
