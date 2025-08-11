@@ -32,7 +32,7 @@ async function handleLinkedInCallback(urlParams) {
         // Exchange authorization code for access token using Supabase Edge Function
         console.log('Calling Supabase Edge Function for token exchange...');
         console.log('Using supabaseClient:', typeof supabaseClient);
-        console.log('Function URL will be:', `${SUPABASE_URL}/functions/v1/linkedin-auth`);
+        console.log('Function URL will be:', `${window.SUPABASE_URL}/functions/v1/linkedin-auth`);
         
         const { data: tokenData, error: tokenError } = await supabaseClient.functions.invoke('linkedin-auth', {
             body: {

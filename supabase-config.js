@@ -1,6 +1,8 @@
-// Supabase Configuration
-const SUPABASE_URL = 'https://mgkcxhywnqalinailuxu.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1na2N4aHl3bnFhbGluYWlsdXh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5MTM0MTYsImV4cCI6MjA3MDQ4OTQxNn0.RWkv1k2642nuMYaIkzUxoHDmwOkAVImXo9gIWhSFkjw';
+// Supabase Configuration - Make globally available
+window.SUPABASE_URL = 'https://mgkcxhywnqalinailuxu.supabase.co';
+window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1na2N4aHl3bnFhbGluYWlsdXh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5MTM0MTYsImV4cCI6MjA3MDQ4OTQxNn0.RWkv1k2642nuMYaIkzUxoHDmwOkAVImXo9gIWhSFkjw';
+const SUPABASE_URL = window.SUPABASE_URL;
+const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY;
 
 // LinkedIn OAuth Configuration
 const LINKEDIN_CLIENT_ID = '77bb4l8debdzn3';
