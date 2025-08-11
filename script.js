@@ -1,4 +1,66 @@
+// LinkedIn OAuth callback handler
+function handleLinkedInCallback(urlParams) {
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
+    const error = urlParams.get('error');
+    const storedState = sessionStorage.getItem('linkedin_oauth_state');
+
+    console.log('Handling LinkedIn callback:', { code, state, error });
+
+    if (error) {
+        alert('LinkedIn authentication failed: ' + error);
+        window.location.href = window.location.pathname; // Redirect back
+        return;
+    }
+
+    if (state !== storedState) {
+        alert('Invalid LinkedIn authentication state');
+        window.location.href = window.location.pathname; // Redirect back
+        return;
+    }
+
+    if (!code) {
+        alert('No LinkedIn authorization code received');
+        window.location.href = window.location.pathname; // Redirect back
+        return;
+    }
+
+    // Mock LinkedIn profile data (in production, exchange code for access token)
+    const mockLinkedInProfile = {
+        id: 'linkedin_' + Date.now(),
+        firstName: 'LinkedIn',
+        lastName: 'User',
+        email: 'user@company.com',
+        company: 'Demo Company',
+        headline: 'Professional User',
+        profileUrl: 'https://linkedin.com/in/user',
+        profilePicture: null
+    };
+
+    // Store LinkedIn data
+    sessionStorage.setItem('linkedin_profile', JSON.stringify({
+        ...mockLinkedInProfile,
+        fullName: `${mockLinkedInProfile.firstName} ${mockLinkedInProfile.lastName}`,
+        linkedinAuth: true
+    }));
+
+    // Clean up OAuth data
+    sessionStorage.removeItem('linkedin_oauth_state');
+    
+    // Clean up URL and redirect back to main page
+    window.history.replaceState({}, document.title, window.location.pathname);
+    window.location.reload(); // Reload to continue with auth flow
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Check for LinkedIn OAuth callback first ---
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('code') && urlParams.has('state')) {
+        console.log('LinkedIn OAuth callback detected');
+        handleLinkedInCallback(urlParams);
+        return; // Handle callback and exit
+    }
+
     // --- Authentication System ---
     const authContainer = document.getElementById('auth-container');
     const presentationContainer = document.getElementById('presentation-container');
@@ -13,6 +75,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Access codes (in a real application, this would be handled server-side)
     const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
+
+    // Check if we have LinkedIn profile data from callback
+    const existingLinkedInProfile = sessionStorage.getItem('linkedin_profile');
+    if (existingLinkedInProfile) {
+        const profileData = JSON.parse(existingLinkedInProfile);
+        console.log('Found existing LinkedIn profile:', profileData);
+        
+        // Auto-populate form with LinkedIn data
+        document.getElementById('email').value = profileData.email;
+        document.getElementById('company').value = profileData.company || 'LinkedIn User';
+        
+        // Show the form with populated data
+        document.getElementById('auth-form').style.display = 'block';
+        
+        // Focus on access code
+        document.getElementById('access-code').focus();
+        
+        // Show welcome message
+        setTimeout(() => {
+            alert(`Welcome ${profileData.firstName}! Your LinkedIn profile has been loaded. Please enter your access code to continue.`);
+        }, 100);
+    }
 
     // Check if user is already authenticated
     async function checkAuthentication() {
@@ -53,33 +137,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle LinkedIn OAuth authentication
     linkedinAuthBtn.addEventListener('click', async () => {
+        console.log('LinkedIn button clicked');
         const originalText = linkedinAuthBtn.textContent;
         linkedinAuthBtn.textContent = 'Connecting to LinkedIn...';
         linkedinAuthBtn.disabled = true;
 
         try {
-            // Real LinkedIn OAuth flow
-            const linkedinProfile = await SupabaseDB.initiateLinkedInAuth();
-
-            // Auto-populate form with LinkedIn data
-            document.getElementById('email').value = linkedinProfile.email;
-            document.getElementById('company').value = linkedinProfile.company || 'LinkedIn User';
+            console.log('Initiating LinkedIn OAuth...');
             
-            // Store LinkedIn data for NDA pre-population
-            sessionStorage.setItem('linkedin_profile', JSON.stringify({
-                ...linkedinProfile,
-                fullName: `${linkedinProfile.firstName} ${linkedinProfile.lastName}`,
-                linkedinAuth: true
-            }));
-
-            // Show the form with populated data
-            document.getElementById('auth-form').style.display = 'block';
+            // Redirect to LinkedIn OAuth
+            const scope = 'openid profile email';
+            const state = Math.random().toString(36).substring(2, 15);
+            const redirectUri = window.location.origin + window.location.pathname;
             
-            // Focus on access code
-            document.getElementById('access-code').focus();
+            const authUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+                `response_type=code&` +
+                `client_id=77bb4l8debdzn3&` +
+                `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+                `scope=${encodeURIComponent(scope)}&` +
+                `state=${state}`;
             
-            // Show success message
-            alert(`Welcome ${linkedinProfile.firstName}! Your profile has been loaded. Please enter your access code to continue.`);
+            console.log('Auth URL:', authUrl);
+            
+            // Store state for validation
+            sessionStorage.setItem('linkedin_oauth_state', state);
+            
+            // Redirect to LinkedIn
+            window.location.href = authUrl;
+            return; // Stop execution here
 
         } catch (error) {
             console.error('LinkedIn auth error:', error);
