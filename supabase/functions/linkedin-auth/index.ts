@@ -2,6 +2,13 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { corsHeaders } from '../_shared/cors.ts'
 
+// Secure access codes - only stored server-side
+const VALID_ACCESS_CODES = [
+  'DATAPACE2024',
+  'INVESTOR001', 
+  'DEMO123'
+]
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -9,7 +16,33 @@ serve(async (req) => {
   }
 
   try {
-    const { action, code, redirectUri, accessToken } = await req.json()
+    const { action, code, redirectUri, accessToken, accessCode } = await req.json()
+    
+    // Validate access code for authentication actions
+    if (action === 'validate_access_code') {
+      if (!accessCode || !VALID_ACCESS_CODES.includes(accessCode)) {
+        return new Response(
+          JSON.stringify({ error: 'Invalid access code. Please contact Datapace for access.' }),
+          { 
+            status: 403,
+            headers: { 
+              ...corsHeaders, 
+              'Content-Type': 'application/json' 
+            } 
+          }
+        )
+      }
+      
+      return new Response(
+        JSON.stringify({ valid: true }),
+        { 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
+      )
+    }
 
     if (action === 'exchange_token') {
       // Exchange authorization code for access token

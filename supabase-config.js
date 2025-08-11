@@ -4,10 +4,8 @@ window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB
 const SUPABASE_URL = window.SUPABASE_URL;
 const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY;
 
-// LinkedIn OAuth Configuration
+// LinkedIn OAuth Configuration (Client ID only - secret stays in Supabase Edge Function)
 const LINKEDIN_CLIENT_ID = '77bb4l8debdzn3';
-const LINKEDIN_CLIENT_SECRET = 'WPL_AP1.Cv5aW2w3PwyMmJ8g.HLAB4w==';
-const LINKEDIN_REDIRECT_URI = window.location.origin + '/oauth/linkedin';
 
 // Initialize Supabase client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -187,20 +185,9 @@ const SupabaseDB = {
         }
 
         try {
-            // For demo purposes, we'll simulate the profile data since the token exchange requires backend
-            // In production, you'd exchange the code for an access token server-side
-            const mockLinkedInProfile = {
-                id: 'linkedin_' + Date.now(),
-                firstName: 'LinkedIn',
-                lastName: 'User',
-                email: 'linkedin.user@company.com',
-                company: 'LinkedIn User Company',
-                headline: 'Professional User',
-                profileUrl: 'https://linkedin.com/in/user',
-                profilePicture: null
-            };
-
-            this._linkedinResolve(mockLinkedInProfile);
+            // LinkedIn token exchange should be handled by Supabase Edge Function
+            // This is a security issue - real implementation should not have mock data
+            this._linkedinReject(new Error('LinkedIn authentication requires proper server-side token exchange via Supabase Edge Function'));
         } catch (error) {
             this._linkedinReject(error);
         }

@@ -130,8 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInfo = document.getElementById('user-info');
     const linkedinAuthBtn = document.getElementById('linkedin-auth-btn');
 
-    // Access codes (in a real application, this would be handled server-side)
-    const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
+    // Access codes validation handled server-side for security
 
     // Check if we have LinkedIn profile data from callback
     const existingLinkedInProfile = sessionStorage.getItem('linkedin_profile');
@@ -240,7 +239,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (!validAccessCodes.includes(accessCode)) {
+        // Validate access code server-side for security
+        console.log('Validating access code server-side...');
+        const { data: validationData, error: validationError } = await supabaseClient.functions.invoke('linkedin-auth', {
+            body: {
+                action: 'validate_access_code',
+                accessCode: accessCode
+            }
+        });
+
+        if (validationError || !validationData?.valid) {
             alert('Invalid access code. Please contact Datapace for access.');
             return;
         }

@@ -1,0 +1,29 @@
+# Environment variables - NEVER commit secrets
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# HAR files contain sensitive data
+*.har
+
+# Node modules and build artifacts
+node_modules/
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+.DS_Store
+Thumbs.db
