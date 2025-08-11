@@ -167,6 +167,57 @@
     background: var(--text-dark);
 }
 
+/* LinkedIn Auth Button */
+.linkedin-auth-button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: #0077B5;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.linkedin-auth-button:hover {
+    background: #005582;
+    transform: translateY(-1px);
+}
+
+.linkedin-auth-button i {
+    font-size: 1.2rem;
+}
+
+/* Auth Divider */
+.auth-divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #d1d5db;
+}
+
+.auth-divider span {
+    background: white;
+    padding: 0 1rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
 .button-group {
     display: flex;
     gap: 1rem;

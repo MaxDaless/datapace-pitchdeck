@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToAuthBtn = document.getElementById('back-to-auth');
     const logoutBtn = document.getElementById('logout-btn');
     const userInfo = document.getElementById('user-info');
+    const linkedinAuthBtn = document.getElementById('linkedin-auth-btn');
 
     // Access codes (in a real application, this would be handled server-side)
     const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
@@ -49,6 +50,56 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
         initializePresentation();
     }
+
+    // Handle LinkedIn OAuth authentication
+    linkedinAuthBtn.addEventListener('click', async () => {
+        const originalText = linkedinAuthBtn.textContent;
+        linkedinAuthBtn.textContent = 'Connecting to LinkedIn...';
+        linkedinAuthBtn.disabled = true;
+
+        try {
+            // Initiate LinkedIn OAuth (simplified for demo - in production use proper OAuth flow)
+            const linkedinProfile = await new Promise((resolve, reject) => {
+                // For demo purposes, we'll simulate LinkedIn data
+                // In real implementation, use proper LinkedIn OAuth flow
+                const mockLinkedInData = {
+                    id: 'demo-linkedin-id',
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'john.doe@company.com',
+                    company: 'Demo Company Inc.',
+                    profilePicture: null
+                };
+                
+                // Simulate OAuth popup experience
+                setTimeout(() => {
+                    resolve(mockLinkedInData);
+                }, 1500);
+            });
+
+            // Auto-populate form with LinkedIn data
+            document.getElementById('email').value = linkedinProfile.email;
+            document.getElementById('company').value = linkedinProfile.company;
+            
+            // Store LinkedIn data for NDA pre-population
+            sessionStorage.setItem('linkedin_profile', JSON.stringify({
+                ...linkedinProfile,
+                fullName: `${linkedinProfile.firstName} ${linkedinProfile.lastName}`,
+                linkedinAuth: true
+            }));
+
+            // Show success message and focus on access code
+            alert(`Welcome ${linkedinProfile.firstName}! Please enter your access code to continue.`);
+            document.getElementById('access-code').focus();
+
+        } catch (error) {
+            console.error('LinkedIn auth error:', error);
+            alert('LinkedIn authentication failed. Please try manual entry or try again.');
+        } finally {
+            linkedinAuthBtn.textContent = originalText;
+            linkedinAuthBtn.disabled = false;
+        }
+    });
 
     // Handle authentication form submission
     authFormEl.addEventListener('submit', async (e) => {
@@ -91,6 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(authResult.error);
             }
 
+            // Get LinkedIn profile data if available
+            const linkedinProfile = sessionStorage.getItem('linkedin_profile');
+            let profileData = {};
+            if (linkedinProfile) {
+                profileData = JSON.parse(linkedinProfile);
+            }
+
             // Store temporary auth data for NDA process
             const tempAuthData = {
                 sessionId: authResult.data.id,
@@ -98,10 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 email,
                 company,
                 authenticated: true,
-                timestamp: new Date().getTime()
+                timestamp: new Date().getTime(),
+                ...profileData
             };
             
             sessionStorage.setItem('temp_auth', JSON.stringify(tempAuthData));
+            
+            // Pre-populate NDA form if LinkedIn data is available
+            if (profileData.linkedinAuth && profileData.fullName) {
+                document.getElementById('full-name').value = profileData.fullName;
+            }
             
             // Show NDA form
             loginForm.style.display = 'none';
@@ -203,6 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ndaForm.style.display = 'none';
         loginForm.style.display = 'block';
         sessionStorage.removeItem('temp_auth');
+        sessionStorage.removeItem('linkedin_profile');
+        // Clear form fields
+        document.getElementById('full-name').value = '';
+        document.getElementById('signature').value = '';
+        document.getElementById('nda-agree').checked = false;
     });
 
     // Logout functionality

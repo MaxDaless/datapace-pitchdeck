@@ -13,6 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Supabase JavaScript SDK -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- LinkedIn SDK -->
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">
+        api_key: 77bb4l8debdzn3
+        authorize: true
+    </script>
 </head>
 <body>
     <!-- Authentication Container -->
@@ -25,6 +30,17 @@
                     <h1>Datapace Pitch Deck</h1>
                     <p>Please authenticate to access the presentation</p>
                 </div>
+                <!-- LinkedIn OAuth Option -->
+                <div class="form-group">
+                    <button type="button" id="linkedin-auth-btn" class="linkedin-auth-button">
+                        <i class="fab fa-linkedin"></i>
+                        Continue with LinkedIn
+                    </button>
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+                </div>
+
                 <form id="auth-form">
                     <div class="form-group">
                         <label for="email">Email Address</label>
