@@ -23,7 +23,11 @@ const SupabaseDB = {
                     full_name: authData.fullName || null,
                     access_code: authData.accessCode,
                     ip_address: authData.ipAddress || null,
-                    user_agent: authData.userAgent || navigator.userAgent
+                    user_agent: authData.userAgent || navigator.userAgent,
+                    linkedin_id: authData.linkedinId || null,
+                    linkedin_profile_url: authData.linkedinProfileUrl || null,
+                    linkedin_profile_picture: authData.linkedinProfilePicture || null,
+                    auth_method: authData.authMethod || 'manual'
                 }])
                 .select();
 
@@ -88,104 +92,39 @@ const SupabaseDB = {
 
     // LinkedIn OAuth functions
     initiateLinkedInAuth() {
-        const scope = 'openid profile email';
-        const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_CLIENT_ID}&redirect_uri=${encodeURIComponent(LINKEDIN_REDIRECT_URI)}&scope=${encodeURIComponent(scope)}&state=${Date.now()}`;
-        
-        // Open LinkedIn auth in popup
-        const popup = window.open(
-            authUrl,
-            'linkedin-auth',
-            'width=600,height=700,scrollbars=yes,resizable=yes'
-        );
-
         return new Promise((resolve, reject) => {
-            const checkClosed = setInterval(() => {
-                if (popup.closed) {
-                    clearInterval(checkClosed);
-                    reject(new Error('LinkedIn auth popup was closed'));
-                }
-            }, 1000);
-
-            // Listen for message from popup
-            const messageListener = (event) => {
-                if (event.origin !== window.location.origin) return;
-                
-                if (event.data.type === 'LINKEDIN_AUTH_SUCCESS') {
-                    clearInterval(checkClosed);
-                    window.removeEventListener('message', messageListener);
-                    popup.close();
-                    resolve(event.data.profile);
-                } else if (event.data.type === 'LINKEDIN_AUTH_ERROR') {
-                    clearInterval(checkClosed);
-                    window.removeEventListener('message', messageListener);
-                    popup.close();
-                    reject(new Error(event.data.error));
-                }
-            };
-
-            window.addEventListener('message', messageListener);
-        });
-    },
-
-    async exchangeLinkedInCode(code) {
-        try {
-            // In a real implementation, this would go through your backend
-            // For now, we'll use a client-side approach (not recommended for production)
-            const response = await fetch('https://www.linkedin.com/oauth/v2/accessToken', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    grant_type: 'authorization_code',
-                    code: code,
-                    client_id: LINKEDIN_CLIENT_ID,
-                    client_secret: LINKEDIN_CLIENT_SECRET,
-                    redirect_uri: LINKEDIN_REDIRECT_URI
-                })
-            });
-
-            const tokenData = await response.json();
-            if (tokenData.access_token) {
-                return await this.getLinkedInProfile(tokenData.access_token);
-            } else {
-                throw new Error('Failed to get access token');
+            // Use LinkedIn JavaScript SDK
+            if (typeof IN === 'undefined') {
+                reject(new Error('LinkedIn SDK not loaded'));
+                return;
             }
-        } catch (error) {
-            console.error('Error exchanging LinkedIn code:', error);
-            throw error;
-        }
-    },
 
-    async getLinkedInProfile(accessToken) {
-        try {
-            const [profileResponse, emailResponse] = await Promise.all([
-                fetch('https://api.linkedin.com/v2/people/~?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                }),
-                fetch('https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
+            IN.User.authorize(() => {
+                // Get user profile data
+                IN.API.Profile('me')
+                .fields(['firstName', 'lastName', 'emailAddress', 'headline', 'industry', 'positions', 'publicProfileUrl', 'pictureUrl'])
+                .result((profile) => {
+                    const user = profile.values[0];
+                    const linkedinData = {
+                        id: user.id,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.emailAddress,
+                        headline: user.headline,
+                        industry: user.industry,
+                        company: user.positions?.values?.[0]?.company?.name || 'LinkedIn User',
+                        profileUrl: user.publicProfileUrl,
+                        profilePicture: user.pictureUrl
+                    };
+                    resolve(linkedinData);
                 })
-            ]);
-
-            const profile = await profileResponse.json();
-            const email = await emailResponse.json();
-
-            return {
-                id: profile.id,
-                firstName: profile.firstName?.localized?.en_US || '',
-                lastName: profile.lastName?.localized?.en_US || '',
-                email: email.elements?.[0]?.['handle~']?.emailAddress || '',
-                profilePicture: profile.profilePicture?.['displayImage~']?.elements?.[0]?.identifiers?.[0]?.identifier || null
-            };
-        } catch (error) {
-            console.error('Error getting LinkedIn profile:', error);
-            throw error;
-        }
+                .error((error) => {
+                    reject(new Error('Failed to get LinkedIn profile: ' + error.message));
+                });
+            }, (error) => {
+                reject(new Error('LinkedIn authorization failed: ' + error.message));
+            });
+        });
     }
 };
 

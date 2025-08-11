@@ -30,31 +30,31 @@
                     <h1>Datapace Pitch Deck</h1>
                     <p>Please authenticate to access the presentation</p>
                 </div>
-                <!-- LinkedIn OAuth Option -->
+                <!-- LinkedIn OAuth + Access Code -->
                 <div class="form-group">
                     <button type="button" id="linkedin-auth-btn" class="linkedin-auth-button">
                         <i class="fab fa-linkedin"></i>
                         Continue with LinkedIn
                     </button>
-                    <div class="auth-divider">
-                        <span>or</span>
-                    </div>
                 </div>
 
-                <form id="auth-form">
+                <form id="auth-form" style="display: none;">
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="your.email@company.com">
+                        <input type="email" id="email" required placeholder="your.email@company.com" readonly>
                     </div>
                     <div class="form-group">
                         <label for="company">Company/Organization</label>
-                        <input type="text" id="company" required placeholder="Your Company Name">
+                        <input type="text" id="company" required placeholder="Your Company Name" readonly>
                     </div>
                     <div class="form-group">
                         <label for="access-code">Access Code</label>
                         <input type="password" id="access-code" required placeholder="Enter access code">
+                        <small style="color: var(--text-light); font-size: 0.875rem; margin-top: 0.5rem; display: block;">
+                            Use: DATAPACE2024, INVESTOR001, or DEMO123
+                        </small>
                     </div>
-                    <button type="submit" class="auth-button">Authenticate</button>
+                    <button type="submit" class="auth-button">Complete Authentication</button>
                 </form>
             </div>
         </div>

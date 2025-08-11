@@ -58,28 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         linkedinAuthBtn.disabled = true;
 
         try {
-            // Initiate LinkedIn OAuth (simplified for demo - in production use proper OAuth flow)
-            const linkedinProfile = await new Promise((resolve, reject) => {
-                // For demo purposes, we'll simulate LinkedIn data
-                // In real implementation, use proper LinkedIn OAuth flow
-                const mockLinkedInData = {
-                    id: 'demo-linkedin-id',
-                    firstName: 'John',
-                    lastName: 'Doe',
-                    email: 'john.doe@company.com',
-                    company: 'Demo Company Inc.',
-                    profilePicture: null
-                };
-                
-                // Simulate OAuth popup experience
-                setTimeout(() => {
-                    resolve(mockLinkedInData);
-                }, 1500);
-            });
+            // Real LinkedIn OAuth flow
+            const linkedinProfile = await SupabaseDB.initiateLinkedInAuth();
 
             // Auto-populate form with LinkedIn data
             document.getElementById('email').value = linkedinProfile.email;
-            document.getElementById('company').value = linkedinProfile.company;
+            document.getElementById('company').value = linkedinProfile.company || 'LinkedIn User';
             
             // Store LinkedIn data for NDA pre-population
             sessionStorage.setItem('linkedin_profile', JSON.stringify({
@@ -88,13 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 linkedinAuth: true
             }));
 
-            // Show success message and focus on access code
-            alert(`Welcome ${linkedinProfile.firstName}! Please enter your access code to continue.`);
+            // Show the form with populated data
+            document.getElementById('auth-form').style.display = 'block';
+            
+            // Focus on access code
             document.getElementById('access-code').focus();
+            
+            // Show success message
+            alert(`Welcome ${linkedinProfile.firstName}! Your profile has been loaded. Please enter your access code to continue.`);
 
         } catch (error) {
             console.error('LinkedIn auth error:', error);
-            alert('LinkedIn authentication failed. Please try manual entry or try again.');
+            alert('LinkedIn authentication failed: ' + error.message);
         } finally {
             linkedinAuthBtn.textContent = originalText;
             linkedinAuthBtn.disabled = false;
@@ -129,13 +118,28 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get user IP address
             const ipAddress = await SupabaseDB.getUserIP();
 
+            // Get LinkedIn profile data if available
+            const linkedinProfile = sessionStorage.getItem('linkedin_profile');
+            let linkedinData = {};
+            if (linkedinProfile) {
+                const profile = JSON.parse(linkedinProfile);
+                linkedinData = {
+                    linkedinId: profile.id,
+                    linkedinProfileUrl: profile.profileUrl,
+                    linkedinProfilePicture: profile.profilePicture,
+                    authMethod: 'linkedin'
+                };
+            }
+
             // Create auth session in database
             const authResult = await SupabaseDB.createAuthSession({
                 email,
                 company,
                 accessCode,
                 ipAddress,
-                userAgent: navigator.userAgent
+                userAgent: navigator.userAgent,
+                fullName: linkedinProfile ? JSON.parse(linkedinProfile).fullName : null,
+                ...linkedinData
             });
 
             if (!authResult.success) {
@@ -266,9 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
     backToAuthBtn.addEventListener('click', () => {
         ndaForm.style.display = 'none';
         loginForm.style.display = 'block';
+        document.getElementById('auth-form').style.display = 'none';
         sessionStorage.removeItem('temp_auth');
         sessionStorage.removeItem('linkedin_profile');
         // Clear form fields
+        document.getElementById('email').value = '';
+        document.getElementById('company').value = '';
+        document.getElementById('access-code').value = '';
         document.getElementById('full-name').value = '';
         document.getElementById('signature').value = '';
         document.getElementById('nda-agree').checked = false;
