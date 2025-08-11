@@ -30,43 +30,34 @@ async function handleLinkedInCallback(urlParams) {
         document.body.innerHTML += '<div id="linkedin-loading" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000;"><div style="text-align: center;"><i class="fab fa-linkedin" style="font-size: 24px; color: #0077b5; margin-bottom: 10px;"></i><br>Getting your LinkedIn profile...</div></div>';
 
         // Exchange authorization code for access token using Supabase Edge Function
-        const tokenResponse = await fetch(`${window.supabaseUrl}/functions/v1/linkedin-auth`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${window.supabaseAnonKey}`,
-            },
-            body: JSON.stringify({
+        console.log('Calling Supabase Edge Function for token exchange...');
+        const { data: tokenData, error: tokenError } = await supabaseClient.functions.invoke('linkedin-auth', {
+            body: {
                 action: 'exchange_token',
                 code: code,
                 redirectUri: window.location.origin + window.location.pathname
-            })
+            }
         });
 
-        if (!tokenResponse.ok) {
-            throw new Error('Failed to get LinkedIn access token');
+        if (tokenError) {
+            console.error('Token exchange failed:', tokenError);
+            throw new Error(`Failed to get LinkedIn access token: ${tokenError.message}`);
         }
 
-        const tokenData = await tokenResponse.json();
+        console.log('Token exchange successful, getting profile...');
         
         // Get user profile data from LinkedIn API using Supabase Edge Function
-        const profileResponse = await fetch(`${window.supabaseUrl}/functions/v1/linkedin-auth`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${window.supabaseAnonKey}`,
-            },
-            body: JSON.stringify({
+        const { data: profileData, error: profileError } = await supabaseClient.functions.invoke('linkedin-auth', {
+            body: {
                 action: 'get_profile',
                 accessToken: tokenData.access_token
-            })
+            }
         });
 
-        if (!profileResponse.ok) {
-            throw new Error('Failed to get LinkedIn profile data');
+        if (profileError) {
+            console.error('Profile fetch failed:', profileError);
+            throw new Error(`Failed to get LinkedIn profile data: ${profileError.message}`);
         }
-
-        const profileData = await profileResponse.json();
 
         // Store real LinkedIn data
         const linkedInProfile = {
@@ -95,23 +86,12 @@ async function handleLinkedInCallback(urlParams) {
         const loadingEl = document.getElementById('linkedin-loading');
         if (loadingEl) loadingEl.remove();
         
-        // Fall back to mock data for demo purposes
-        console.log('Falling back to demo mode...');
-        const mockProfile = {
-            id: 'linkedin_demo_' + Date.now(),
-            firstName: 'Demo',
-            lastName: 'User',
-            email: 'demo@linkedin.com',
-            company: '',
-            headline: 'LinkedIn Demo User',
-            profileUrl: '',
-            profilePicture: null,
-            fullName: 'Demo User',
-            linkedinAuth: true
-        };
+        // Show proper error message
+        alert(`LinkedIn authentication failed: ${error.message}\n\nPlease make sure the Supabase Edge Function 'linkedin-auth' is deployed and configured properly.`);
         
-        sessionStorage.setItem('linkedin_profile', JSON.stringify(mockProfile));
-        alert('LinkedIn API unavailable - running in demo mode with sample profile.');
+        // Redirect back to main page
+        window.location.href = window.location.pathname;
+        return;
     }
 
     // Clean up OAuth data
