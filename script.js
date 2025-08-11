@@ -231,13 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(authResult.error);
             }
 
-            // Get LinkedIn profile data if available
-            const linkedinProfile = sessionStorage.getItem('linkedin_profile');
-            let profileData = {};
-            if (linkedinProfile) {
-                profileData = JSON.parse(linkedinProfile);
-            }
-
             // Store temporary auth data for NDA process
             const tempAuthData = {
                 sessionId: authResult.data.id,
@@ -246,14 +239,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 company,
                 authenticated: true,
                 timestamp: new Date().getTime(),
-                ...profileData
+                ...(linkedinProfile ? JSON.parse(linkedinProfile) : {})
             };
             
             sessionStorage.setItem('temp_auth', JSON.stringify(tempAuthData));
             
             // Pre-populate NDA form if LinkedIn data is available
-            if (profileData.linkedinAuth && profileData.fullName) {
-                document.getElementById('full-name').value = profileData.fullName;
+            if (linkedinProfile) {
+                const profileData = JSON.parse(linkedinProfile);
+                if (profileData.linkedinAuth && profileData.fullName) {
+                    document.getElementById('full-name').value = profileData.fullName;
+                }
             }
             
             // Show NDA form
