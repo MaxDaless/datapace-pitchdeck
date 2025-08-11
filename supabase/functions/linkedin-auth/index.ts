@@ -16,11 +16,18 @@ serve(async (req) => {
   }
 
   try {
-    const { action, code, redirectUri, accessToken, accessCode } = await req.json()
+    const requestBody = await req.json()
+    console.log('Received request:', requestBody)
+    
+    const { action, code, redirectUri, accessToken, accessCode } = requestBody
     
     // Validate access code for authentication actions
     if (action === 'validate_access_code') {
+      console.log('Validating access code:', accessCode)
+      console.log('Valid codes:', VALID_ACCESS_CODES)
+      
       if (!accessCode || !VALID_ACCESS_CODES.includes(accessCode)) {
+        console.log('Access code validation failed')
         return new Response(
           JSON.stringify({ error: 'Invalid access code. Please contact Datapace for access.' }),
           { 
@@ -33,6 +40,7 @@ serve(async (req) => {
         )
       }
       
+      console.log('Access code validation successful')
       return new Response(
         JSON.stringify({ valid: true }),
         { 
@@ -119,8 +127,23 @@ serve(async (req) => {
 
   } catch (error) {
     console.error('LinkedIn auth error:', error)
+    
+    // More specific error handling
+    if (error instanceof SyntaxError) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid JSON in request body' }),
+        { 
+          status: 400,
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          } 
+        }
+      )
+    }
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message || 'Internal server error' }),
       { 
         status: 500,
         headers: { 
