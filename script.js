@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
 
     // Check if we have LinkedIn profile data from callback
+    // Updated: No email field - only company and access code required
     const existingLinkedInProfile = sessionStorage.getItem('linkedin_profile');
     if (existingLinkedInProfile) {
         const profileData = JSON.parse(existingLinkedInProfile);
