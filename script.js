@@ -28,12 +28,12 @@ function handleLinkedInCallback(urlParams) {
     // Mock LinkedIn profile data (in production, exchange code for access token)
     const mockLinkedInProfile = {
         id: 'linkedin_' + Date.now(),
-        firstName: 'LinkedIn',
-        lastName: 'User',
-        email: 'user@company.com',
-        company: 'Demo Company',
-        headline: 'Professional User',
-        profileUrl: 'https://linkedin.com/in/user',
+        firstName: 'John',
+        lastName: 'Smith',
+        email: 'john.smith@company.com',
+        company: 'Tech Solutions Inc',
+        headline: 'Senior Software Engineer',
+        profileUrl: 'https://linkedin.com/in/johnsmith',
         profilePicture: null
     };
 
