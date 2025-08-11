@@ -32,6 +32,8 @@
     align-items: center;
     justify-content: center;
     z-index: 10000;
+    overflow-y: auto;
+    padding: 1rem 0;
 }
 
 .auth-form {
@@ -51,6 +53,7 @@
     max-width: 800px;
     max-height: 90vh;
     overflow-y: auto;
+    width: 100%;
 }
 
 .auth-header {
@@ -260,13 +263,22 @@
 
 /* Mobile responsive adjustments for auth */
 @media (max-width: 768px) {
+    .auth-container {
+        align-items: flex-start;
+        padding: 2rem 0;
+    }
+
     .auth-form {
         padding: 1rem;
+        width: 100%;
+        max-width: calc(100vw - 2rem);
     }
     
     .nda-card {
-        margin: 1rem;
-        max-height: calc(100vh - 2rem);
+        margin: 0;
+        max-height: none;
+        min-height: calc(100vh - 4rem);
+        overflow-y: visible;
     }
     
     .auth-header {
@@ -292,6 +304,12 @@
     
     .nda-text {
         padding: 1.5rem;
+    }
+
+    /* NDA content adjustments for mobile */
+    .nda-content {
+        max-height: none;
+        overflow-y: visible;
     }
     
     .auth-status {
@@ -319,6 +337,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
 }
+
+/* Remove the unsupported :has selector - will handle via JavaScript */
 
 /* Performance optimizations */
 .slide-container,

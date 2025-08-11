@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
         authContainer.style.display = 'none';
         presentationContainer.style.display = 'block';
         userInfo.textContent = `${userData.fullName} (${userData.company})`;
+        // Restore hidden overflow for presentation mode
+        document.body.style.overflow = 'hidden';
         initializePresentation();
     }
 
@@ -213,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
             loginForm.style.display = 'block';
             ndaForm.style.display = 'none';
             
+            // Allow scrolling for auth forms on mobile
+            document.body.style.overflow = 'auto';
+            
             // Reset forms
             authFormEl.reset();
             ndaSignForm.reset();
@@ -225,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isAuthenticated) {
             authContainer.style.display = 'flex';
             presentationContainer.style.display = 'none';
+            // Allow body scrolling for auth forms on mobile
+            document.body.style.overflow = 'auto';
         }
     }
     
