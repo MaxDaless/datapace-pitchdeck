@@ -82,19 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileData = JSON.parse(existingLinkedInProfile);
         console.log('Found existing LinkedIn profile:', profileData);
         
-        // Auto-populate form with LinkedIn data
-        document.getElementById('email').value = profileData.email;
-        document.getElementById('company').value = profileData.company || 'LinkedIn User';
-        
-        // Show the form with populated data
+        // Show the form without prefilled data
         document.getElementById('auth-form').style.display = 'block';
         
-        // Focus on access code
-        document.getElementById('access-code').focus();
+        // Focus on company field first
+        document.getElementById('company').focus();
         
         // Show welcome message
         setTimeout(() => {
-            alert(`Welcome ${profileData.firstName}! Your LinkedIn profile has been loaded. Please enter your access code to continue.`);
+            alert(`Welcome ${profileData.firstName}! Please enter your organization and access code to continue.`);
         }, 100);
     }
 
@@ -179,11 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
     authFormEl.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const email = document.getElementById('email').value;
         const company = document.getElementById('company').value;
         const accessCode = document.getElementById('access-code').value;
 
-        if (!email || !company || !accessCode) {
+        if (!company || !accessCode) {
             alert('Please fill in all fields');
             return;
         }
@@ -206,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get LinkedIn profile data if available
             const linkedinProfile = sessionStorage.getItem('linkedin_profile');
             let linkedinData = {};
+            let profileEmail = null;
             if (linkedinProfile) {
                 const profile = JSON.parse(linkedinProfile);
                 linkedinData = {
@@ -214,11 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     linkedinProfilePicture: profile.profilePicture,
                     authMethod: 'linkedin'
                 };
+                profileEmail = profile.email; // Get email from LinkedIn profile
             }
 
             // Create auth session in database
             const authResult = await SupabaseDB.createAuthSession({
-                email,
+                email: profileEmail, // Use LinkedIn email if available
                 company,
                 accessCode,
                 ipAddress,
@@ -235,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tempAuthData = {
                 sessionId: authResult.data.id,
                 sessionToken: authResult.data.session_token,
-                email,
+                email: profileEmail, // Use LinkedIn email if available
                 company,
                 authenticated: true,
                 timestamp: new Date().getTime(),
@@ -355,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem('temp_auth');
         sessionStorage.removeItem('linkedin_profile');
         // Clear form fields
-        document.getElementById('email').value = '';
         document.getElementById('company').value = '';
         document.getElementById('access-code').value = '';
         document.getElementById('full-name').value = '';
