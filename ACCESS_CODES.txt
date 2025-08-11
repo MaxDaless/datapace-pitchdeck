@@ -1,0 +1,46 @@
+DATAPACE PITCH DECK - SUPABASE AUTHENTICATION SYSTEM
+====================================================
+
+🔐 ACCESS CODES FOR TESTING:
+1. DATAPACE2024 - Main access code
+2. INVESTOR001 - Investor access code  
+3. DEMO123 - Demo access code
+
+🗄️ DATABASE INTEGRATION:
+✅ Connected to Supabase PostgreSQL database
+✅ Real-time data storage for authentication and NDA signatures
+✅ Row Level Security (RLS) enabled for data protection
+✅ Session validation through database queries
+
+📋 AUTHENTICATION FLOW:
+1. Enter email, company name, and access code
+2. System stores auth session in Supabase database
+3. Review and sign the NDA agreement  
+4. Digital signature stored in database with audit trail
+5. Access the protected presentation
+
+🔒 SECURITY FEATURES:
+- Database-backed session validation (24-hour expiration)
+- IP address and user agent logging for audit trail
+- Row Level Security policies prevent unauthorized data access
+- Digital signature verification (must match full name)
+- Access attempt logging with timestamps
+
+💾 DATA STORAGE:
+- Authentication sessions: Supabase `auth_sessions` table
+- NDA signatures: Supabase `nda_signatures` table  
+- Local session cache: Browser localStorage (for performance)
+- All sensitive data encrypted in transit (HTTPS)
+
+🚀 DEPLOYMENT READY:
+✅ Static site compatible (GitHub Pages ready)
+✅ CDN-based Supabase client (no build process needed)
+✅ Environment variables not required (anon key safe for frontend)
+✅ CORS configured for GitHub Pages deployment
+
+📊 AUDIT TRAIL:
+Every access attempt is logged in the database with:
+- Email, company, full name
+- Session tokens and timestamps
+- IP addresses and user agents
+- NDA signature details and versions

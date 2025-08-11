@@ -1,5 +1,239 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Global Variables for Presentation State ---
+    // --- Authentication System ---
+    const authContainer = document.getElementById('auth-container');
+    const presentationContainer = document.getElementById('presentation-container');
+    const loginForm = document.getElementById('login-form');
+    const ndaForm = document.getElementById('nda-form');
+    const authFormEl = document.getElementById('auth-form');
+    const ndaSignForm = document.getElementById('nda-sign-form');
+    const backToAuthBtn = document.getElementById('back-to-auth');
+    const logoutBtn = document.getElementById('logout-btn');
+    const userInfo = document.getElementById('user-info');
+
+    // Access codes (in a real application, this would be handled server-side)
+    const validAccessCodes = ['DATAPACE2024', 'INVESTOR001', 'DEMO123'];
+
+    // Check if user is already authenticated
+    async function checkAuthentication() {
+        const authData = localStorage.getItem('datapace_auth');
+        if (authData) {
+            try {
+                const parsed = JSON.parse(authData);
+                if (parsed.authenticated && parsed.ndaSigned && parsed.sessionToken) {
+                    // Validate session with database
+                    const sessionResult = await SupabaseDB.validateSession(parsed.sessionToken);
+                    
+                    if (sessionResult.success) {
+                        showPresentation(parsed);
+                        return true;
+                    } else {
+                        // Session expired or invalid
+                        localStorage.removeItem('datapace_auth');
+                        console.log('Session validation failed:', sessionResult.error);
+                    }
+                }
+            } catch (e) {
+                localStorage.removeItem('datapace_auth');
+                console.error('Error checking authentication:', e);
+            }
+        }
+        return false;
+    }
+
+    // Show presentation after successful authentication
+    function showPresentation(userData) {
+        authContainer.style.display = 'none';
+        presentationContainer.style.display = 'block';
+        userInfo.textContent = `${userData.fullName} (${userData.company})`;
+        initializePresentation();
+    }
+
+    // Handle authentication form submission
+    authFormEl.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const company = document.getElementById('company').value;
+        const accessCode = document.getElementById('access-code').value;
+
+        if (!email || !company || !accessCode) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        if (!validAccessCodes.includes(accessCode)) {
+            alert('Invalid access code. Please contact Datapace for access.');
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Authenticating...';
+        submitBtn.disabled = true;
+
+        try {
+            // Get user IP address
+            const ipAddress = await SupabaseDB.getUserIP();
+
+            // Create auth session in database
+            const authResult = await SupabaseDB.createAuthSession({
+                email,
+                company,
+                accessCode,
+                ipAddress,
+                userAgent: navigator.userAgent
+            });
+
+            if (!authResult.success) {
+                throw new Error(authResult.error);
+            }
+
+            // Store temporary auth data for NDA process
+            const tempAuthData = {
+                sessionId: authResult.data.id,
+                sessionToken: authResult.data.session_token,
+                email,
+                company,
+                authenticated: true,
+                timestamp: new Date().getTime()
+            };
+            
+            sessionStorage.setItem('temp_auth', JSON.stringify(tempAuthData));
+            
+            // Show NDA form
+            loginForm.style.display = 'none';
+            ndaForm.style.display = 'block';
+
+        } catch (error) {
+            console.error('Authentication error:', error);
+            alert('Authentication failed: ' + error.message);
+        } finally {
+            // Restore button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Handle NDA form submission
+    ndaSignForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('full-name').value;
+        const signature = document.getElementById('signature').value;
+        const ndaAgreed = document.getElementById('nda-agree').checked;
+
+        if (!fullName || !signature || !ndaAgreed) {
+            alert('Please complete all fields and agree to the NDA terms');
+            return;
+        }
+
+        if (signature.toLowerCase() !== fullName.toLowerCase()) {
+            alert('Digital signature must match your full legal name');
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Signing NDA...';
+        submitBtn.disabled = true;
+
+        try {
+            // Get temp auth data
+            const tempAuthData = JSON.parse(sessionStorage.getItem('temp_auth'));
+            
+            if (!tempAuthData || !tempAuthData.sessionId) {
+                throw new Error('Session data not found. Please try logging in again.');
+            }
+
+            // Store NDA signature in database
+            const ndaResult = await SupabaseDB.createNDASignature({
+                sessionId: tempAuthData.sessionId,
+                fullName,
+                signature
+            });
+
+            if (!ndaResult.success) {
+                throw new Error(ndaResult.error);
+            }
+
+            // Complete authentication data
+            const finalAuthData = {
+                sessionId: tempAuthData.sessionId,
+                sessionToken: tempAuthData.sessionToken,
+                email: tempAuthData.email,
+                company: tempAuthData.company,
+                fullName,
+                signature,
+                authenticated: true,
+                ndaSigned: true,
+                ndaSignedAt: new Date().toISOString(),
+                timestamp: tempAuthData.timestamp
+            };
+
+            // Store in localStorage for session persistence
+            localStorage.setItem('datapace_auth', JSON.stringify(finalAuthData));
+            sessionStorage.removeItem('temp_auth');
+            
+            console.log('Access granted and stored in database:', {
+                timestamp: new Date().toISOString(),
+                email: finalAuthData.email,
+                company: finalAuthData.company,
+                fullName: finalAuthData.fullName,
+                sessionId: finalAuthData.sessionId
+            });
+
+            showPresentation(finalAuthData);
+
+        } catch (error) {
+            console.error('NDA signing error:', error);
+            alert('NDA signing failed: ' + error.message);
+        } finally {
+            // Restore button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Back to login button
+    backToAuthBtn.addEventListener('click', () => {
+        ndaForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        sessionStorage.removeItem('temp_auth');
+    });
+
+    // Logout functionality
+    logoutBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to logout? You will need to re-authenticate to access the presentation.')) {
+            localStorage.removeItem('datapace_auth');
+            sessionStorage.removeItem('temp_auth');
+            presentationContainer.style.display = 'none';
+            authContainer.style.display = 'flex';
+            loginForm.style.display = 'block';
+            ndaForm.style.display = 'none';
+            
+            // Reset forms
+            authFormEl.reset();
+            ndaSignForm.reset();
+        }
+    });
+
+    // Initialize authentication check
+    async function initializeAuth() {
+        const isAuthenticated = await checkAuthentication();
+        if (!isAuthenticated) {
+            authContainer.style.display = 'flex';
+            presentationContainer.style.display = 'none';
+        }
+    }
+    
+    // Start authentication check
+    initializeAuth();
+
+    // Presentation initialization function
+    function initializePresentation() {
+        // --- Global Variables for Presentation State ---
     const slides = Array.from(document.querySelectorAll('.slide'));
     const tocToggle = document.getElementById('toc-toggle');
     const tocContainer = document.getElementById('toc');
@@ -286,6 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
         togglePricing(false);
     }
 
-    // Initial check on page load
-    handleScreenMode();
+        // Initial check on page load
+        handleScreenMode();
+    }
 });

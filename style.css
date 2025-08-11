@@ -20,6 +20,290 @@
     --spacing-2xl: 48px;
 }
 
+/* Authentication Styles */
+.auth-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.auth-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-large);
+    overflow: hidden;
+}
+
+.nda-card {
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.auth-header {
+    text-align: center;
+    padding: 2rem 2rem 1rem;
+    background: var(--bg-light);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+.auth-header h1 {
+    color: var(--title-blue);
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.auth-header p {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    padding: 0 2rem;
+}
+
+.form-group:first-child {
+    padding-top: 2rem;
+}
+
+.form-group:last-child {
+    padding-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin: 0;
+    transform: scale(1.2);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--primary-teal);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.auth-button:hover {
+    background: var(--emphasis-blue);
+    transform: translateY(-1px);
+}
+
+.auth-button.secondary {
+    background: var(--text-light);
+    color: white;
+}
+
+.auth-button.secondary:hover {
+    background: var(--text-dark);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    padding: 0 2rem 2rem;
+}
+
+.button-group .auth-button {
+    flex: 1;
+}
+
+/* NDA Specific Styles */
+.nda-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.nda-text {
+    padding: 2rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.nda-text h3 {
+    color: var(--title-blue);
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.nda-text h4 {
+    color: var(--title-blue);
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.nda-text p {
+    margin: 0 0 1rem;
+}
+
+.nda-text ul {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.nda-text li {
+    margin-bottom: 0.25rem;
+}
+
+.signature-section {
+    border-top: 1px solid #e2e8f0;
+    background: var(--bg-light);
+}
+
+/* Auth Status Bar */
+.auth-status {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.auth-status #user-info {
+    color: white;
+    font-size: 0.875rem;
+}
+
+.logout-button {
+    background: var(--primary-teal);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    background: var(--emphasis-blue);
+}
+
+.logout-button i {
+    margin-right: 0.5rem;
+}
+
+/* Mobile responsive adjustments for auth */
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 1rem;
+    }
+    
+    .nda-card {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .auth-header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .form-group {
+        padding: 0 1.5rem;
+    }
+    
+    .form-group:first-child {
+        padding-top: 1.5rem;
+    }
+    
+    .form-group:last-child {
+        padding-bottom: 1.5rem;
+    }
+    
+    .button-group {
+        padding: 0 1.5rem 1.5rem;
+        flex-direction: column;
+    }
+    
+    .nda-text {
+        padding: 1.5rem;
+    }
+    
+    .auth-status {
+        position: relative;
+        top: auto;
+        right: auto;
+        justify-content: space-between;
+        border-radius: 0;
+        margin-bottom: 1rem;
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -629,6 +913,197 @@ p {
     font-weight: 600;
 }
 
+/* --- Addressable Market Slide --- */
+.addressable-market-slide .content {
+    padding: 60px 100px;
+    gap: var(--spacing-xl);
+}
+
+.tam-sam-som-section {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-title {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 600;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.market-segments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.market-segment {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-top: 4px solid;
+    position: relative;
+}
+
+.market-segment:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-large);
+}
+
+.tam-segment {
+    border-top-color: var(--primary-blue);
+}
+
+.sam-segment {
+    border-top-color: var(--primary-teal);
+}
+
+.som-segment {
+    border-top-color: var(--primary-green);
+}
+
+.segment-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.segment-title {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.segment-subtitle {
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.segment-value {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--title-blue);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.segment-description {
+    font-size: clamp(14px, 1.8vw, 16px);
+    line-height: 1.5;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.segment-source {
+    font-size: clamp(11px, 1.4vw, 12px);
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.market-growth-section {
+    background-color: rgba(248, 250, 252, 0.8);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-light);
+}
+
+.chart-title {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 600;
+    color: var(--title-blue);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.chart-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--spacing-xl);
+    justify-content: center;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.bar-fill {
+    width: 80px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, var(--primary-teal) 0%, var(--primary-blue) 100%);
+    position: relative;
+}
+
+.bar-2024 .bar-fill {
+    height: 94px;
+}
+
+.bar-2025 .bar-fill {
+    height: 108px;
+}
+
+.bar-2032 .bar-fill {
+    height: 276px;
+}
+
+.bar-value {
+    font-size: clamp(14px, 1.8vw, 16px);
+    font-weight: 600;
+    color: var(--title-blue);
+    margin-bottom: var(--spacing-xs);
+    text-align: center;
+}
+
+.bar-label {
+    font-size: clamp(12px, 1.6vw, 14px);
+    color: var(--text-dark);
+    margin-top: var(--spacing-xs);
+    text-align: center;
+    font-weight: 500;
+}
+
+.y-axis-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: var(--text-light);
+    margin-right: var(--spacing-md);
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chart-footnote {
+    font-size: clamp(11px, 1.4vw, 12px);
+    color: var(--text-light);
+    text-align: center;
+    font-style: italic;
+    margin-top: var(--spacing-sm);
+}
+
 /* Mobile responsiveness for competitive landscape */
 @media (max-width: 1024px) {
     .competitive-landscape .content {
@@ -1147,6 +1622,50 @@ p {
     align-items: center;
     justify-content: center;
     word-wrap: break-word;
+}
+
+/* Mobile responsiveness for addressable market */
+@media (max-width: 1024px) {
+    .addressable-market-slide .content {
+        padding: 40px 20px;
+    }
+    
+    .market-segments-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .market-segment {
+        padding: var(--spacing-md);
+    }
+    
+    .segment-value {
+        font-size: clamp(24px, 6vw, 32px);
+    }
+    
+    .chart-bars {
+        gap: var(--spacing-md);
+    }
+    
+    .bar-fill {
+        width: 60px;
+    }
+    
+    .bar-2024 .bar-fill {
+        height: 70px;
+    }
+    
+    .bar-2025 .bar-fill {
+        height: 80px;
+    }
+    
+    .bar-2032 .bar-fill {
+        height: 200px;
+    }
+    
+    .market-growth-section {
+        padding: var(--spacing-lg);
+    }
 }
 
 /* Mobile responsiveness for GTM strategy */

@@ -1,0 +1,55 @@
+Slide Placement
+Position: Insert this slide directly after "Market Trends" and before "The Solution".
+
+Rationale: It logically connects the market trends to the quantifiable financial opportunity your solution addresses.
+
+Number: This will become the new slide #5.
+
+Slide Content
+Title: Tackling a Multi-Billion Dollar Inefficiency
+Subtitle: Our addressable market is large, growing, and validated by significant enterprise spend on performance.
+Part 1: Market Segments (TAM-SAM-SOM)
+TAM (Total Addressable Market)
+
+Value: $110B+
+
+Description: The combined 2025 global markets for Database Management, Application Performance Monitoring (APM), and Cloud Observability.
+
+Sources: Business Research Insights, Mordor Intelligence.
+
+SAM (Serviceable Addressable Market)
+
+Value: $2.7B
+
+Description: The 2025 market for Database Performance Monitoring software, our direct area of competition where we can provide immediate value.
+
+Source: Fortune Business Insights.
+
+SOM (Serviceable Obtainable Market)
+
+Value: $1M ARR (Initial Target)
+
+Description: Our initial target, capturing a realistic fraction of the high-value PostgreSQL market. We'll achieve this through a bottom-up strategy, onboarding 2,000+ developers and freelancers—primarily in North America—who will serve as the entry point into larger teams, at an initial average ACV of $500.
+
+Source: Internal Go-to-Market Projection.
+
+Part 2: Growth Visualization (Chart)
+Chart Title: Database Performance Monitoring Market Growth (USD Billions)
+
+Chart Type: Bar Chart.
+
+Data to Visualize:
+
+X-Axis Label (Years): 2024, 2025, 2032 (Projection)
+
+Y-Axis Label (Value): USD Billions
+
+Values:
+
+2024: $2.35B
+
+2025: $2.70B
+
+2032 (Proj.): $6.91B
+
+Chart Footnote: Source: Fortune Business Insights. CAGR of 14.4%.
