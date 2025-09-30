@@ -2378,8 +2378,8 @@ input:checked + .toggle-slider:before {
     top: 20px;
     left: 20px;
     z-index: 101;
-    background-color: rgba(17, 24, 39, 0.8);
-    color: #e5e7eb;
+    background-color: var(--primary-teal);
+    color: white;
     border: none;
     width: 50px;
     height: 50px;
@@ -2390,10 +2390,13 @@ input:checked + .toggle-slider:before {
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
 }
 .toc-button:hover {
-    background-color: var(--primary-teal);
+    background-color: var(--emphasis-blue);
     color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(20, 184, 166, 0.5);
 }
 
 .toc-container {
@@ -2658,10 +2661,11 @@ body.toc-open .toc-container {
     
     .slide-container {
         width: 100%;
-        height: auto;
-        min-height: 0;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
         box-shadow: none;
-        overflow: visible;
+        overflow: visible !important;
         border-radius: 0;
         background-color: transparent;
     }
@@ -2669,7 +2673,10 @@ body.toc-open .toc-container {
     .content {
         display: block !important;
         padding: 0 var(--spacing-md);
-        min-height: auto;
+        min-height: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
     
     /* Special centered slides maintain flex layout on mobile */
@@ -3030,6 +3037,24 @@ body.toc-open .toc-container {
         width: 20px;
         height: 20px;
         font-size: 11px;
+    }
+
+    /* Force all slide elements to be scrollable and visible */
+    .slide * {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    /* Ensure all slide content sections are fully visible */
+    .trends-slide .content,
+    .competitive-landscape .content,
+    .addressable-market-slide .content,
+    .gtm-slide .content,
+    .founder-slide .content,
+    .moat-slide .content {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
 }
 }

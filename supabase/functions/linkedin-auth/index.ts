@@ -11,8 +11,9 @@ const corsHeaders = {
 // Secure access codes - only stored server-side
 const VALID_ACCESS_CODES = [
   'DATAPACE2024',
-  'INVESTOR001', 
-  'DEMO123'
+  'INVESTOR001',
+  'DEMO123',
+  'Panache2025'
 ]
 
 serve(async (req) => {
